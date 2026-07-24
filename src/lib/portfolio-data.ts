@@ -1,13 +1,13 @@
 export const profile = {
   name: 'Soumyadip Maity',
-  role: 'Frontend Developer',
-  focus: 'Building polished web interfaces, learning products, and interactive tools with clean code.',
+  role: 'Data Scientist & ML Enthusiast',
+  focus: 'Harnessing data analysis, statistical modeling, machine learning, and Python to uncover actionable insights and build intelligent models.',
   location: 'India',
   email: 'maitysoumya108@gmail.com',
   resumeHref: '/Soumyadip_Maity_CV.pdf',
   githubHref: 'https://github.com/Soumya9679',
   linkedinHref: 'https://linkedin.com/in/soumyadip-maity-996686353',
-  leetcodeHref: 'https://leetcode.com/u/_soumya__dip_/',
+  leetcodeHref: 'https://leetcode.com/u/Soumya9679/',
 };
 
 export const navItems = [
@@ -40,120 +40,120 @@ export const socialLinks = [
   {
     label: 'LeetCode',
     href: profile.leetcodeHref,
-    username: '@_soumya__dip_',
+    username: '@Soumya9679',
     kind: 'leetcode',
   },
 ] as const;
 
 export const heroStats = [
-  { value: '5+', label: 'Projects shipped' },
-  { value: 'Next.js', label: 'Current portfolio stack' },
-  { value: 'India', label: 'Remote-friendly' },
+  { value: 'Python', label: 'Primary Language' },
+  { value: 'ML & EDA', label: 'Core Expertise' },
+  { value: '5+', label: 'Projects Completed' },
 ];
 
 export const principles = [
-  'Clear layouts that make information easy to scan.',
-  'Responsive interfaces that feel composed on every screen.',
-  'Practical features backed by thoughtful UI details.',
-  'Clean code structure that stays easy to extend.',
+  'Data-driven insights grounded in statistical rigor & exploratory analysis.',
+  'Clean, modular Python code structured for reproducible machine learning.',
+  'Clear, impactful data visualizations that translate complex analytics simply.',
+  'Continuous exploration of Machine Learning algorithms, Deep Learning & AI.',
 ];
 
 export const capabilities = [
   {
-    title: 'Frontend Implementation',
+    title: 'Machine Learning & Modeling',
     description:
-      'Responsive pages, component systems, motion details, and accessible UI built with modern web tools.',
+      'Predictive modeling, classification, regression, and model evaluation using Scikit-Learn, PyTorch, and Python.',
     accent: 'teal',
   },
   {
-    title: 'Interactive Products',
+    title: 'Data Analytics & EDA',
     description:
-      'Games, learning flows, coding platforms, and small product ideas shaped into usable experiences.',
+      'Exploratory data analysis, data wrangling, cleansing, and feature engineering with Pandas, NumPy, and SQL.',
     accent: 'blue',
   },
   {
-    title: 'Problem Solving',
+    title: 'Data Visualization & Insights',
     description:
-      'Algorithm practice and programming fundamentals applied to cleaner logic and better user flows.',
+      'Creating intuitive charts, visual stories, and interactive dashboards using Matplotlib, Seaborn, and Plotly.',
     accent: 'gold',
   },
   {
-    title: 'Product Polish',
+    title: 'Python & Algorithmic Logic',
     description:
-      'Careful spacing, readable content, purposeful animation, and UI states that make a site feel finished.',
+      'Efficient Python scripting, data structure implementations, and algorithm problem-solving for data workflows.',
     accent: 'ink',
   },
 ];
 
 export const techGroups = [
   {
-    title: 'Frontend',
-    items: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Next.js', 'Tailwind CSS'],
+    title: 'Data Science & ML',
+    items: ['Python', 'Pandas', 'NumPy', 'Scikit-Learn', 'PyTorch', 'Jupyter Notebooks'],
   },
   {
-    title: 'Programming',
-    items: ['C', 'Java', 'Python', 'TypeScript'],
+    title: 'Analytics & Viz',
+    items: ['Matplotlib', 'Seaborn', 'Plotly', 'SQL', 'EDA', 'Statistical Modeling'],
   },
   {
-    title: 'Workflow',
-    items: ['GitHub', 'Responsive Design', 'Netlify', 'Vercel', 'Form Validation'],
+    title: 'Tools & Programming',
+    items: ['Python (Primary)', 'C', 'Java', 'Git & GitHub', 'Streamlit', 'Data Cleaning'],
   },
 ];
 
 export const projects = [
   {
     title: 'PulsePy',
-    category: 'Learning Platform',
+    category: 'Python & Learning',
     description:
-      'An AI-inspired Python learning platform with gamified coding challenges and a focused learning experience.',
+      'An interactive Python learning platform with gamified coding challenges and algorithm practice designed for data logic development.',
     image: '/images/pulsepy.png',
-    tags: ['HTML', 'CSS', 'JavaScript'],
+    tags: ['Python', 'Algorithms', 'Interactive Logic'],
     href: 'https://pulsepy.tech',
     action: 'View live',
-    highlight: 'Designed to make Python practice feel more engaging and structured.',
+    highlight: 'Designed to make Python programming, logic practice, and algorithmic thinking structured.',
   },
   {
     title: 'Ecolearn',
-    category: 'Education Product',
+    category: 'Analytics & Education',
     description:
-      'A sustainability learning platform that uses quizzes and gamified content to make environmental topics easier to explore.',
+      'A data-informed sustainability learning platform that leverages interactive quizzes and visual analytics modules to communicate environmental impact.',
     image: '/images/Ecolearn.png',
-    tags: ['HTML', 'CSS', 'JavaScript'],
+    tags: ['Python', 'Data Analytics', 'Visualization'],
     href: 'https://sih-team-mindoras.netlify.app/',
     action: 'View live',
-    highlight: 'Built around approachable education, simple navigation, and visual learning.',
+    highlight: 'Combines data storytelling, interactive quizzes, and accessible visual exploration.',
   },
   {
     title: 'Time Capsule Notes',
-    category: 'Utility App',
+    category: 'Data Logging & Logic',
     description:
-      'A note-taking experience for writing messages today and revisiting them at a future moment.',
+      'A structured note-taking & temporal data logging system designed for scheduling future releases and managing timestamped records.',
     image: '/images/time-capsule-notes.png',
-    tags: ['HTML', 'CSS', 'JavaScript'],
+    tags: ['Data Logic', 'Temporal Storage', 'JavaScript'],
     href: 'https://time-capsule-notes.netlify.app/',
     action: 'View live',
-    highlight: 'A personal productivity concept with a simple, memorable interaction model.',
+    highlight: 'Explores time-series indexing, storage persistence, and predictable state transitions.',
   },
   {
     title: 'Tic Tac Toe',
-    category: 'Browser Game',
+    category: 'Algorithmic State Machine',
     description:
-      'A polished implementation of the classic game with responsive interactions and smooth play flow.',
+      'A game logic implementation demonstrating state machine handling, optimal minimax turn evaluation, and game feedback.',
     image: '/images/tic-tac-toe.png',
-    tags: ['HTML', 'CSS', 'JavaScript'],
+    tags: ['Algorithms', 'State Machines', 'Logic'],
     href: 'https://tic-tac-toe-soumya-project.netlify.app/',
     action: 'Play game',
-    highlight: 'Focused on state handling, feedback, and an approachable game UI.',
+    highlight: 'Focused on algorithmic decision trees, state validation, and clean logic.',
   },
   {
     title: 'Coinzy Game',
-    category: 'Desktop Game',
+    category: 'Simulation & Metrics',
     description:
-      'A fast coin-collecting PC game concept built around simple mechanics and repeatable play.',
+      'A fast coin-collecting simulation game exploring real-time loops, collision physics, and event metric collection.',
     image: '/images/pc-game.png',
-    tags: ['Game Dev', 'Desktop'],
+    tags: ['Simulation', 'Game Loop', 'Desktop'],
     href: 'https://drive.google.com/file/d/1dKZ8j5R4rEuogB-7J6IQ5I7UnuVja2mD/view?usp=drivesdk',
     action: 'Download',
-    highlight: 'Explores game loops, timing, and fast user feedback outside the browser.',
+    highlight: 'Explores real-time event loops, frame state tracking, and metric calculation.',
   },
 ];

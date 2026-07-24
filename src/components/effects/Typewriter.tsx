@@ -3,10 +3,10 @@
 import { useEffect, useRef } from 'react';
 
 const roles = [
-  'Frontend Developer',
-  'Next.js & React Specialist',
-  'Interactive UI Craftsman',
-  'Problem Solver',
+  'Data Scientist',
+  'Python Developer',
+  'Machine Learning Specialist',
+  'Data Analyst',
 ];
 
 export default function Typewriter() {

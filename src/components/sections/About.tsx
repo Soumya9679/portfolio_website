@@ -31,8 +31,8 @@ export default function About() {
       <div className="section-shell">
         <SectionHeading
           eyebrow="About Me"
-          title="A developer who cares deeply about finished, high-polish web products."
-          subtitle="I enjoy shaping ideas into web experiences that are easy to navigate, visual to explore, and robustly architected under the hood."
+          title="A Data Science practitioner focused on statistical modeling, analytics, and clean code."
+          subtitle="I enjoy analyzing datasets, building predictive models, and crafting data-driven solutions using Python, Machine Learning, and statistical tools."
         />
 
         <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
@@ -47,13 +47,13 @@ export default function About() {
             <div className="space-y-4 text-base leading-relaxed text-slate-300 md:text-lg">
               <p>
                 I am <span className="font-semibold text-white">{profile.name}</span>, a dedicated{' '}
-                <span className="text-emerald-400 font-semibold">{profile.role}</span> building clean web interfaces, interactive learning products, and frontend applications.
+                <span className="text-emerald-400 font-semibold">{profile.role}</span> exploring data modeling, exploratory data analysis, and machine learning pipelines.
               </p>
               <p>
-                My engineering approach starts with structure: intuitive information design, responsive design tokens, and smooth micro-interactions that guide users effortlesly.
+                My analytical approach begins with clean data pipelines: feature extraction, exploratory analysis, statistical validation, and intuitive data visualizations that communicate findings clearly.
               </p>
               <p>
-                Whether building complex Next.js full-stack applications, gamified coding platforms, or standalone utility tools, I combine core CS fundamentals with modern React paradigms.
+                Equipped with strong programming fundamentals in Python, C, and Java, I apply algorithmic thinking and Machine Learning libraries (Scikit-Learn, PyTorch, Pandas) to solve real-world data problems.
               </p>
             </div>
 
@@ -98,10 +98,10 @@ export default function About() {
             <div className="flex items-center justify-between border-b border-white/10 pb-5">
               <div>
                 <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
-                  Engineering Attributes
+                  Analytical Mindset
                 </span>
                 <h3 className="mt-1 font-display text-xl font-bold text-white">
-                  Working Philosophy
+                  Data Philosophy
                 </h3>
               </div>
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
@@ -121,8 +121,8 @@ export default function About() {
               <div className="flex items-start gap-3">
                 <Layers3 className="h-4 w-4 text-cyan-400 mt-1 shrink-0" />
                 <div>
-                  <p className="text-xs text-slate-400 font-medium">Core Stack</p>
-                  <p className="text-sm font-semibold text-white">Next.js & React</p>
+                  <p className="text-xs text-slate-400 font-medium">Core Language</p>
+                  <p className="text-sm font-semibold text-white">Python & Data Stack</p>
                 </div>
               </div>
             </div>

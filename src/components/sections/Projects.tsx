@@ -23,15 +23,11 @@ export default function Projects() {
   const [activeModalProject, setActiveModalProject] = useState<ProjectType | null>(null);
   const shouldReduceMotion = useReducedMotion();
 
-  const categories = ['All', 'Learning Platform', 'Education Product', 'Utility App', 'Games'];
+  const categories = ['All', 'Python & Learning', 'Analytics & Education', 'Data Logging & Logic', 'Algorithmic State Machine'];
 
   const filteredProjects =
     selectedCategory === 'All'
       ? projects
-      : selectedCategory === 'Games'
-      ? projects.filter(
-          (p) => p.category === 'Browser Game' || p.category === 'Desktop Game'
-        )
       : projects.filter((p) => p.category === selectedCategory);
 
   return (
@@ -40,8 +36,8 @@ export default function Projects() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-8">
           <SectionHeading
             eyebrow="Featured Work"
-            title="Selected projects shipped with focus & precision."
-            subtitle="Explore interactive products, educational platforms, and utility tools showcasing frontend execution and clean UX."
+            title="Selected projects built with focus & analytical rigor."
+            subtitle="Explore data science applications, interactive learning tools, and algorithmic projects highlighting Python logic and data modeling."
           />
 
           <a href="#contact" className="button-secondary self-start md:self-auto mb-12">

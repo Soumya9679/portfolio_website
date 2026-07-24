@@ -3,14 +3,12 @@
 import { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import {
-  Blocks,
+  BarChart3,
   BrainCircuit,
   Code2,
   Cpu,
-  Globe,
-  Layers,
-  Layout,
-  MonitorSmartphone,
+  Database,
+  LineChart,
   Sparkles,
   Terminal,
   Wrench,
@@ -19,7 +17,7 @@ import SectionHeading from '@/components/ui/SectionHeading';
 import { capabilities, techGroups } from '@/lib/portfolio-data';
 import { cn } from '@/lib/utils';
 
-const capabilityIcons = [MonitorSmartphone, Blocks, BrainCircuit, Sparkles];
+const capabilityIcons = [BrainCircuit, BarChart3, LineChart, Terminal];
 
 export default function Skills() {
   const [activeTab, setActiveTab] = useState<string>('All');
@@ -35,14 +33,14 @@ export default function Skills() {
       <div className="section-shell">
         <SectionHeading
           eyebrow="Skills & Stack"
-          title="Battle-tested tools for creating performant web apps."
-          subtitle="Not just knowing libraries, but crafting responsive layouts, clean state management, accessible UI, and polished user journeys."
+          title="Analytical skills, Python expertise & Machine Learning workflows."
+          subtitle="Combining statistical analysis, exploratory data wrangling, predictive modeling, and efficient Python programming to uncover actionable insights."
         />
 
         {/* Core Capabilities Grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-12">
           {capabilities.map((capability, index) => {
-            const Icon = capabilityIcons[index] ?? MonitorSmartphone;
+            const Icon = capabilityIcons[index] ?? BrainCircuit;
 
             return (
               <motion.article
@@ -83,7 +81,7 @@ export default function Skills() {
 
             {/* Filter Pills */}
             <div className="flex flex-wrap gap-2">
-              {['All', 'Frontend', 'Programming', 'Workflow'].map((tab) => (
+              {['All', 'Data Science', 'Analytics', 'Tools'].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
@@ -105,9 +103,9 @@ export default function Skills() {
             {filteredGroups.map((group) => (
               <div key={group.title} className="space-y-4">
                 <div className="flex items-center gap-2 text-sm font-bold text-slate-200">
-                  {group.title === 'Frontend' && <Layout className="h-4 w-4 text-emerald-400" />}
-                  {group.title === 'Programming' && <Code2 className="h-4 w-4 text-cyan-400" />}
-                  {group.title === 'Workflow' && <Wrench className="h-4 w-4 text-violet-400" />}
+                  {group.title.includes('Data Science') && <BrainCircuit className="h-4 w-4 text-emerald-400" />}
+                  {group.title.includes('Analytics') && <BarChart3 className="h-4 w-4 text-cyan-400" />}
+                  {group.title.includes('Tools') && <Terminal className="h-4 w-4 text-violet-400" />}
                   <span>{group.title}</span>
                 </div>
 

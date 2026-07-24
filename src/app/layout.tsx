@@ -32,36 +32,36 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: 'Soumyadip Maity | Frontend Developer',
+    default: 'Soumyadip Maity | Data Scientist',
     template: '%s | Soumyadip Maity',
   },
   description:
-    'Professional portfolio of Soumyadip Maity, a frontend developer building polished web interfaces, learning products, and interactive tools.',
+    'Professional portfolio of Soumyadip Maity, a Data Scientist & Python Developer focused on data analytics, machine learning, and statistical modeling.',
   keywords: [
     'Soumyadip Maity',
-    'Frontend Developer',
-    'Web Developer',
+    'Data Scientist',
+    'Python Developer',
+    'Machine Learning',
+    'Data Analytics',
+    'Pandas',
+    'Scikit-Learn',
     'Portfolio',
-    'React',
-    'Next.js',
-    'JavaScript',
-    'Tailwind CSS',
   ],
   authors: [{ name: 'Soumyadip Maity' }],
   creator: 'Soumyadip Maity',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    title: 'Soumyadip Maity | Frontend Developer',
+    title: 'Soumyadip Maity | Data Scientist & ML Specialist',
     description:
-      'A professional portfolio featuring polished web projects, interactive tools, and frontend development work.',
+      'A professional portfolio featuring data science projects, machine learning models, and analytical Python tools.',
     siteName: 'Soumyadip Maity Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Soumyadip Maity | Frontend Developer',
+    title: 'Soumyadip Maity | Data Scientist & ML Specialist',
     description:
-      'Explore projects, skills, and contact details for Soumyadip Maity.',
+      'Explore data science projects, machine learning models, and analytical tools by Soumyadip Maity.',
   },
   robots: {
     index: true,
