@@ -1,17 +1,31 @@
+'use client';
+
 export default function AnimatedBackground() {
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
-      <div className="absolute inset-0 bg-[var(--bg-base)]" />
+    <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
+      {/* Base Space Background */}
+      <div className="absolute inset-0 bg-[#05070d]" />
+
+      {/* Grid Mesh Overlay */}
       <div
-        className="absolute inset-0 opacity-[0.45]"
+        className="absolute inset-0 opacity-[0.15]"
         style={{
-          backgroundImage:
-            'linear-gradient(rgba(17, 21, 19, 0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(17, 21, 19, 0.045) 1px, transparent 1px)',
-          backgroundSize: '56px 56px',
+          backgroundImage: `
+            linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
+          `,
+          backgroundSize: '48px 48px',
         }}
       />
-      <div className="absolute inset-x-0 top-0 h-[460px] bg-[linear-gradient(135deg,rgba(15,118,110,0.14),rgba(245,247,244,0)_42%,rgba(47,95,215,0.1))]" />
-      <div className="absolute inset-x-0 bottom-0 h-[360px] bg-[linear-gradient(180deg,rgba(245,247,244,0),rgba(233,238,240,0.78))]" />
+
+      {/* Radial Gradient Glow Orbs */}
+      <div className="absolute -top-[15%] left-[10%] h-[500px] w-[500px] rounded-full bg-emerald-500/15 blur-[120px] animate-float-slow" />
+      <div className="absolute top-[35%] right-[5%] h-[600px] w-[600px] rounded-full bg-cyan-500/10 blur-[140px] animate-float-delayed" />
+      <div className="absolute top-[65%] left-[15%] h-[550px] w-[550px] rounded-full bg-violet-600/10 blur-[130px] animate-float-slow" />
+      <div className="absolute bottom-[-10%] right-[20%] h-[450px] w-[450px] rounded-full bg-teal-500/15 blur-[120px] animate-float-delayed" />
+
+      {/* Subtle Vignette Edge */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#05070d]/30 to-[#05070d]" />
     </div>
   );
 }

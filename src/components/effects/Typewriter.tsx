@@ -4,9 +4,9 @@ import { useEffect, useRef } from 'react';
 
 const roles = [
   'Frontend Developer',
-  'Interactive UI Builder',
+  'Next.js & React Specialist',
+  'Interactive UI Craftsman',
   'Problem Solver',
-  'Web Product Learner',
 ];
 
 export default function Typewriter() {
@@ -28,7 +28,7 @@ export default function Typewriter() {
         el.textContent = currentRole.substring(0, charIndex++);
         if (charIndex > currentRole.length) {
           isDeleting = true;
-          timeout = setTimeout(type, 2000);
+          timeout = setTimeout(type, 2200);
           return;
         }
       } else {
@@ -39,7 +39,7 @@ export default function Typewriter() {
           charIndex = 0;
         }
       }
-      timeout = setTimeout(type, isDeleting ? 40 : 80);
+      timeout = setTimeout(type, isDeleting ? 45 : 85);
     };
 
     type();
@@ -47,13 +47,12 @@ export default function Typewriter() {
   }, []);
 
   return (
-    <div className="h-10 md:h-12 flex items-center justify-center gap-1.5">
-      <span className="text-[var(--text-muted)] text-lg md:text-xl font-mono">{'>'}</span>
+    <div className="inline-flex items-center gap-2">
       <span
         ref={textRef}
-        className="text-xl sm:text-2xl md:text-3xl font-semibold font-display text-[var(--text-primary)]"
+        className="gradient-text font-display text-xl sm:text-2xl md:text-3xl font-bold tracking-tight"
       />
-      <span className="w-[3px] h-7 md:h-9 rounded-full bg-[var(--accent)] animate-pulse" />
+      <span className="h-6 w-[3px] sm:h-7 md:h-8 rounded-full bg-emerald-400 animate-pulse" />
     </div>
   );
 }

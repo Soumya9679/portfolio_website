@@ -9,11 +9,14 @@ import {
   ArrowUpRight,
   CheckCircle2,
   Code2,
+  Copy,
+  Check,
   Github,
   Linkedin,
   Loader2,
   Mail,
   Send,
+  Sparkles,
   XCircle,
 } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -36,12 +39,11 @@ const iconMap = {
 } as const;
 
 const inputBaseClass =
-  'w-full rounded-lg border bg-white px-4 py-3.5 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] transition focus:border-transparent focus:outline-none focus:ring-2';
+  'w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3.5 text-sm text-white placeholder:text-slate-500 backdrop-blur-md transition-all duration-200 focus:border-emerald-500/50 focus:bg-slate-900/80 focus:outline-none focus:ring-2 focus:ring-emerald-500/20';
 
 export default function Contact() {
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>(
-    'idle'
-  );
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [copied, setCopied] = useState(false);
   const shouldReduceMotion = useReducedMotion();
 
   const {
@@ -52,6 +54,12 @@ export default function Contact() {
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
   });
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(profile.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
 
   const onSubmit = async (data: ContactFormData) => {
     try {
@@ -67,42 +75,56 @@ export default function Contact() {
 
       setSubmitStatus('success');
       reset();
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+      setTimeout(() => setSubmitStatus('idle'), 6000);
     } catch {
       setSubmitStatus('error');
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+      setTimeout(() => setSubmitStatus('idle'), 6000);
     }
   };
 
   return (
-    <section
-      id="contact"
-      className="section-y border-t border-[var(--border)] bg-[var(--surface-muted)]"
-    >
+    <section id="contact" className="section-y relative">
       <div className="section-shell">
-        <div className="grid gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
+          {/* Left Column: Direct Contact Info & Links */}
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
+            viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
+            className="lg:col-span-5"
           >
             <SectionHeading
-              eyebrow="Contact"
-              title="Let's talk about your next web idea."
-              subtitle="Send a message, download the resume, or reach out through any social channel. I keep communication direct and project-focused."
+              eyebrow="Get In Touch"
+              title="Let's build something remarkable together."
+              subtitle="Have a project concept, question, or engineering role? Send a message or connect directly."
             />
 
-            <div className="surface-dark p-6 md:p-8">
-              <p className="text-sm font-semibold text-white/[0.58]">Direct email</p>
-              <a
-                href={`mailto:${profile.email}`}
-                className="mt-3 block break-words font-display text-2xl font-semibold text-white transition hover:text-[#8ddbd5]"
-              >
-                {profile.email}
-              </a>
+            <div className="glass-card p-6 sm:p-8 border-emerald-500/20 bg-slate-900/80">
+              <div className="flex items-center justify-between border-b border-white/10 pb-5">
+                <div>
+                  <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                    Direct Email
+                  </p>
+                  <p className="mt-1 font-mono text-lg font-bold text-white">
+                    {profile.email}
+                  </p>
+                </div>
 
-              <div className="mt-8 space-y-3">
+                <button
+                  onClick={handleCopyEmail}
+                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-emerald-400 transition"
+                  title="Copy email to clipboard"
+                >
+                  {copied ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
+                </button>
+              </div>
+
+              {/* Social Channels List */}
+              <div className="mt-6 space-y-3">
+                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                  Social Channels
+                </p>
                 {socialLinks.map(({ href, label, username, kind }) => {
                   const Icon = iconMap[kind];
 
@@ -112,18 +134,18 @@ export default function Contact() {
                       href={href}
                       target={href.startsWith('mailto') ? undefined : '_blank'}
                       rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                      className="flex items-center gap-4 rounded-lg border border-white/10 px-4 py-3 text-white/[0.78] transition hover:border-white/[0.24] hover:bg-white/[0.06] hover:text-white"
+                      className="group flex items-center gap-3.5 rounded-xl border border-white/10 bg-slate-950/40 p-3 text-slate-300 transition-all duration-200 hover:border-emerald-500/30 hover:bg-emerald-500/10 hover:text-white"
                     >
-                      <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/[0.08]">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 group-hover:scale-105 transition-transform">
                         <Icon className="h-4 w-4" />
                       </span>
-                      <span className="min-w-0 flex-1">
-                        <span className="block text-sm font-semibold">{label}</span>
-                        <span className="block truncate text-xs text-white/[0.52]">
+                      <div className="min-w-0 flex-1">
+                        <span className="block text-xs font-semibold text-white">{label}</span>
+                        <span className="block truncate text-[11px] text-slate-400">
                           {username}
                         </span>
-                      </span>
-                      <ArrowUpRight className="h-4 w-4 shrink-0" />
+                      </div>
+                      <ArrowUpRight className="h-4 w-4 text-slate-500 group-hover:text-emerald-400 transition-colors" />
                     </a>
                   );
                 })}
@@ -131,47 +153,45 @@ export default function Contact() {
             </div>
           </motion.div>
 
+          {/* Right Column: Glassmorphic Contact Form */}
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
+            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.5, delay: 0.06, ease: 'easeOut' }}
-            className="surface-card p-6 md:p-8"
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.5, delay: 0.08, ease: 'easeOut' }}
+            className="glass-card p-6 sm:p-8 lg:col-span-7"
           >
-            <h3 className="font-display text-2xl font-semibold text-[var(--text-primary)]">
-              Send a message
+            <div className="flex items-center gap-2 mb-2">
+              <Sparkles className="h-4 w-4 text-emerald-400" />
+              <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
+                Send a Message
+              </span>
+            </div>
+
+            <h3 className="font-display text-2xl font-bold text-white">
+              Tell me about your project or inquiry
             </h3>
-            <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">
-              Share the goal, timeline, and any useful context. The form will send
-              your note directly to me.
+            <p className="mt-2 text-xs sm:text-sm text-slate-400">
+              Fill out the form below. Messages are delivered directly to my inbox.
             </p>
 
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="mt-8 space-y-5"
-              noValidate
-            >
+            <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4" noValidate>
               <div>
-                <label
-                  htmlFor="name"
-                  className="mb-2 block text-sm font-semibold text-[var(--text-primary)]"
-                >
-                  Name
+                <label htmlFor="name" className="mb-1.5 block text-xs font-semibold text-slate-300">
+                  Your Name
                 </label>
                 <input
                   id="name"
                   {...register('name')}
-                  placeholder="Your name"
+                  placeholder="John Doe"
                   autoComplete="name"
                   className={cn(
                     inputBaseClass,
-                    errors.name
-                      ? 'border-red-400 focus:ring-red-200'
-                      : 'border-[var(--border)] focus:ring-[rgba(15,118,110,0.22)]'
+                    errors.name && 'border-red-500/50 focus:ring-red-500/20'
                   )}
                 />
                 {errors.name && (
-                  <p className="mt-2 flex items-center gap-1.5 text-xs text-red-600">
+                  <p className="mt-1.5 flex items-center gap-1 text-xs text-red-400">
                     <XCircle className="h-3.5 w-3.5" />
                     {errors.name.message}
                   </p>
@@ -179,11 +199,8 @@ export default function Contact() {
               </div>
 
               <div>
-                <label
-                  htmlFor="email"
-                  className="mb-2 block text-sm font-semibold text-[var(--text-primary)]"
-                >
-                  Email
+                <label htmlFor="email" className="mb-1.5 block text-xs font-semibold text-slate-300">
+                  Email Address
                 </label>
                 <input
                   id="email"
@@ -193,13 +210,11 @@ export default function Contact() {
                   autoComplete="email"
                   className={cn(
                     inputBaseClass,
-                    errors.email
-                      ? 'border-red-400 focus:ring-red-200'
-                      : 'border-[var(--border)] focus:ring-[rgba(15,118,110,0.22)]'
+                    errors.email && 'border-red-500/50 focus:ring-red-500/20'
                   )}
                 />
                 {errors.email && (
-                  <p className="mt-2 flex items-center gap-1.5 text-xs text-red-600">
+                  <p className="mt-1.5 flex items-center gap-1 text-xs text-red-400">
                     <XCircle className="h-3.5 w-3.5" />
                     {errors.email.message}
                   </p>
@@ -207,27 +222,22 @@ export default function Contact() {
               </div>
 
               <div>
-                <label
-                  htmlFor="message"
-                  className="mb-2 block text-sm font-semibold text-[var(--text-primary)]"
-                >
+                <label htmlFor="message" className="mb-1.5 block text-xs font-semibold text-slate-300">
                   Message
                 </label>
                 <textarea
                   id="message"
                   {...register('message')}
-                  placeholder="Tell me what you want to build..."
-                  rows={6}
+                  placeholder="Describe your project, ideas, or questions..."
+                  rows={5}
                   className={cn(
                     inputBaseClass,
                     'resize-none',
-                    errors.message
-                      ? 'border-red-400 focus:ring-red-200'
-                      : 'border-[var(--border)] focus:ring-[rgba(15,118,110,0.22)]'
+                    errors.message && 'border-red-500/50 focus:ring-red-500/20'
                   )}
                 />
                 {errors.message && (
-                  <p className="mt-2 flex items-center gap-1.5 text-xs text-red-600">
+                  <p className="mt-1.5 flex items-center gap-1 text-xs text-red-400">
                     <XCircle className="h-3.5 w-3.5" />
                     {errors.message.message}
                   </p>
@@ -237,40 +247,42 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="button-primary w-full disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+                className="button-primary w-full py-4 text-sm font-bold disabled:opacity-60"
               >
                 {isSubmitting ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin" />
-                    Sending
+                    <span>Sending Message...</span>
                   </>
                 ) : (
                   <>
                     <Send className="h-4 w-4" />
-                    Send message
+                    <span>Send Message</span>
                   </>
                 )}
               </button>
 
+              {/* Success Notification */}
               {submitStatus === 'success' && (
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700"
+                  className="flex items-center gap-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/15 px-4 py-3 text-xs sm:text-sm font-medium text-emerald-300"
                 >
-                  <CheckCircle2 className="h-4 w-4 shrink-0" />
-                  Message sent successfully.
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />
+                  <span>Your message was sent successfully! I will get back to you soon.</span>
                 </motion.div>
               )}
 
+              {/* Error Notification */}
               {submitStatus === 'error' && (
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                  className="flex items-center gap-2.5 rounded-xl border border-red-500/30 bg-red-500/15 px-4 py-3 text-xs sm:text-sm font-medium text-red-300"
                 >
-                  <XCircle className="h-4 w-4 shrink-0" />
-                  Failed to send. Please try again.
+                  <XCircle className="h-4 w-4 shrink-0 text-red-400" />
+                  <span>Failed to send message. Please try again or reach out via direct email.</span>
                 </motion.div>
               )}
             </form>
