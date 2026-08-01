@@ -1,78 +1,89 @@
-# Soumyadip Maity Portfolio
+# Soumyadip Maity — Data Science & ML Portfolio
 
-A professional developer portfolio built with Next.js 15, React 19, TypeScript, Tailwind CSS, Framer Motion, and Lucide icons.
+A modern, high-performance personal portfolio website built with **Next.js 15**, **React 19**, **TypeScript**, **Tailwind CSS**, and **Framer Motion**.
 
-The site presents Soumyadip Maity as a frontend developer focused on polished web interfaces, interactive learning products, and practical project work.
+This portfolio showcases Soumyadip Maity's expertise as a **Data Scientist & ML Enthusiast**, highlighting core competencies in statistical modeling, exploratory data analysis (EDA), machine learning pipelines, Retrieval-Augmented Generation (RAG), and Python-driven applications.
 
-## Highlights
+---
 
-- Editorial hero using the real profile image as a full-bleed visual
-- Clean light/dark design system with restrained accent colors
-- Centralized portfolio content in `src/lib/portfolio-data.ts`
-- Professional About, Skills, Projects, and Contact sections
-- Project cards with screenshots, categories, tags, and live links
-- Validated contact form using React Hook Form and Zod
-- Responsive navigation with mobile menu
-- SEO metadata through the Next.js App Router
+## 🚀 Featured Projects
 
-## Tech Stack
+- **[GrowthOS](https://growth-os-livid.vercel.app/)**: A premium personal growth operating system combining AI morning briefs, SuperMemo-2 spaced repetition memory flashcards, multi-platform DSA problem tracking (LeetCode, Codeforces, GFG), and an embedded RAG AI productivity advisor.
+- **[Soumya AI — RAG Knowledge Engine](https://rag-chatbot-ivory-six.vercel.app/)**: An intelligent Retrieval-Augmented Generation platform allowing users to index and query PDFs, spreadsheets, and markdown documentation with factual citations across configurable LLMs (Llama 3, Mistral, Claude).
+- **[PulsePy](https://pulsepy.tech)**: An interactive Python learning platform with gamified coding challenges and algorithm practice designed for data logic development.
+- **[Ecolearn](https://sih-team-mindoras.netlify.app/)**: A data-informed sustainability learning platform leveraging interactive quizzes and visual analytics modules to communicate environmental impact.
+- **[Time Capsule Notes](https://time-capsule-notes.netlify.app/)**: A temporal data logging system exploring time-series indexing and state persistence.
 
-- Next.js 15
-- React 19
-- TypeScript
-- Tailwind CSS
-- Framer Motion
-- Lucide React
-- React Hook Form
-- Zod
+---
 
-## Project Structure
+## 🛠 Tech Stack & Core Competencies
+
+- **Data Science & ML**: Python, PyTorch, Scikit-Learn, Pandas, NumPy, Jupyter Notebooks, RAG Architecture, Vector DBs
+- **Analytics & Visualization**: Matplotlib, Seaborn, Plotly, SQL, Exploratory Data Analysis (EDA), Statistical Modeling
+- **Frontend & Web Frameworks**: Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS, Framer Motion, Lucide Icons
+- **Tooling & Validation**: Git, GitHub, Streamlit, React Hook Form, Zod
+
+---
+
+## ✨ Features & Highlights
+
+- **Data Science Persona**: Tailored specifically around ML modeling, data analytics, and intelligent systems.
+- **Floating DS Badges**: Hero profile showcase highlighting core Python & ML technologies.
+- **Interactive Project Showcase**: Dynamic filtering, categories, tech tags, and direct live deployment links.
+- **Responsive & Dynamic UI**: Smooth animations, dark mode glassmorphism design system, and mobile menu.
+- **Validated Contact System**: Integrated contact form powered by React Hook Form & Zod.
+- **SEO Optimized**: Complete metadata structure via Next.js App Router.
+
+---
+
+## 📁 Project Structure
 
 ```text
-src/
-  app/
-    layout.tsx
-    page.tsx
-    globals.css
-    not-found.tsx
-  components/
-    effects/
-    layout/
-    sections/
-    ui/
-  lib/
-    portfolio-data.ts
-    utils.ts
-public/
-  images/
-  Soumyadip_Maity_CV.pdf
+newPortfolio-nextjs/
+├── public/
+│   ├── images/              # Project screenshots & profile pictures
+│   └── Soumyadip_Maity_CV.pdf
+├── src/
+│   ├── app/
+│   │   ├── globals.css      # Design tokens & glassmorphism utilities
+│   │   ├── layout.tsx       # Root layout & SEO metadata
+│   │   ├── not-found.tsx    # Custom 404 page
+│   │   └── page.tsx         # Main single-page portfolio layout
+│   ├── components/
+│   │   ├── effects/         # Typewriter & interactive effects
+│   │   ├── layout/          # Navbar, Footer, ScrollToTop
+│   │   ├── sections/        # Hero, About, Skills, Projects, Contact
+│   │   └── ui/              # Section headings & shared UI pills
+│   └── lib/
+│       ├── portfolio-data.ts# Centralized portfolio content & metadata
+│       └── utils.ts         # Utility helpers
 ```
 
-## Getting Started
+---
 
-Install dependencies:
+## 🛠 Getting Started
 
-```bash
-npm install
-```
+1. **Clone & Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-Start the development server:
+2. **Run Development Server**:
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-```bash
-npm run dev
-```
+3. **Build for Production**:
+   ```bash
+   npm run build
+   ```
 
-Open [http://localhost:3000](http://localhost:3000).
+---
 
-Build for production:
+## 📬 Contact & Connect
 
-```bash
-npm run build
-```
-
-## Contact
-
-- Email: [maitysoumya108@gmail.com](mailto:maitysoumya108@gmail.com)
-- LinkedIn: [Soumyadip Maity](https://linkedin.com/in/soumyadip-maity-996686353)
-- GitHub: [@Soumya9679](https://github.com/Soumya9679)
-- LeetCode: [@_soumya__dip_](https://leetcode.com/u/_soumya__dip_/)
+- **Email**: [maitysoumya108@gmail.com](mailto:maitysoumya108@gmail.com)
+- **LinkedIn**: [Soumyadip Maity](https://linkedin.com/in/soumyadip-maity-996686353)
+- **GitHub**: [@Soumya9679](https://github.com/Soumya9679)
+- **LeetCode**: [@Soumya9679](https://leetcode.com/u/Soumya9679/)

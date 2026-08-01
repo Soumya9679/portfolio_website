@@ -102,6 +102,28 @@ export const techGroups = [
 
 export const projects = [
   {
+    title: 'GrowthOS',
+    category: 'Productivity & AI OS',
+    description:
+      'A premium personal growth operating system combining AI morning briefs, spaced repetition memory flashcards (SuperMemo-2), DSA problem progress tracking across LeetCode/Codeforces, and an embedded RAG AI advisor.',
+    image: '/images/growth-os.png',
+    tags: ['Next.js', 'AI & RAG', 'Spaced Repetition', 'DSA Tracker', 'Tailwind CSS'],
+    href: 'https://growth-os-livid.vercel.app/',
+    action: 'View live',
+    highlight: 'Features AI-powered daily briefs, SM-2 memory retention, multi-platform DSA tracking, and semantic RAG search.',
+  },
+  {
+    title: 'Soumya AI — RAG Engine',
+    category: 'Generative AI & RAG',
+    description:
+      'An intelligent Retrieval-Augmented Generation (RAG) platform allowing users to index and query PDFs, spreadsheets, and markdown docs with factual citations using configurable LLMs (Llama 3, Mistral, Claude).',
+    image: '/images/rag-chatbot.png',
+    tags: ['Python', 'RAG & Vector DB', 'Llama 3 / Mistral', 'React', 'Tailwind CSS'],
+    href: 'https://rag-chatbot-ivory-six.vercel.app/',
+    action: 'View live',
+    highlight: 'Combines vector embedding search, multi-model selection (Llama 3, Mistral, Claude), document indexing, and source citations.',
+  },
+  {
     title: 'PulsePy',
     category: 'Python & Learning',
     description:
