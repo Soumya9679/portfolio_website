@@ -24,10 +24,10 @@ const iconMap = {
 } as const;
 
 const floatingBadges = [
-  { name: 'Next.js 15', position: '-top-4 -left-4', delay: 0 },
-  { name: 'React 19', position: 'top-1/4 -right-6', delay: 0.5 },
-  { name: 'TypeScript', position: 'bottom-10 -left-6', delay: 1 },
-  { name: 'Tailwind CSS', position: '-bottom-4 right-4', delay: 1.5 },
+  { name: 'Python 3', position: '-top-4 -left-4', delay: 0 },
+  { name: 'PyTorch', position: 'top-1/4 -right-6', delay: 0.5 },
+  { name: 'Scikit-Learn', position: 'bottom-10 -left-6', delay: 1 },
+  { name: 'Pandas & EDA', position: '-bottom-4 right-4', delay: 1.5 },
 ];
 
 export default function Hero() {
@@ -53,7 +53,7 @@ export default function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
-              <span>Available for Web Projects & Engineering Roles</span>
+              <span>Available for Data Science & ML Roles</span>
             </div>
 
             {/* Name Headline */}
