@@ -32,6 +32,3 @@ next-env.d.ts
 # local agent skills & generated design-system docs
 .agents/
 design-system/
-
-# private job application copilot data
-job-copilot/
