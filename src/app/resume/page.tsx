@@ -10,117 +10,106 @@ import {
   skillCategories,
 } from '@/lib/portfolio-data';
 
-const cvProjects = projects.filter((p) => p.tier === 'flagship');
+const cvProjects = projects.filter((p) => p.tier === 'cv-core');
 
 export default function ResumePage() {
   return (
     <div className="section-shell pt-28 pb-20 print:pt-4 print:pb-4">
-      {/* Action Bar */}
       <div className="no-print mb-6 flex flex-wrap items-center justify-between gap-3">
         <Link href="/" className="button-secondary px-4 py-2 text-xs">
-          <ArrowLeft className="h-3.5 w-3.5" />
+          <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
           <span>Back to Portfolio</span>
         </Link>
 
         <div className="flex items-center gap-2.5">
-          <button
-            onClick={() => window.print()}
-            className="button-secondary px-4 py-2 text-xs"
-          >
-            <Printer className="h-3.5 w-3.5 text-emerald-400" />
+          <button onClick={() => window.print()} className="button-secondary px-4 py-2 text-xs">
+            <Printer className="h-3.5 w-3.5 text-[var(--accent-primary)]" aria-hidden="true" />
             <span>Print / Save PDF</span>
           </button>
           <a href={profile.resumeHref} download className="button-primary px-4 py-2 text-xs">
-            <Download className="h-3.5 w-3.5" />
+            <Download className="h-3.5 w-3.5" aria-hidden="true" />
             <span>Download PDF</span>
           </a>
         </div>
       </div>
 
-      {/* Document Sheet */}
-      <article className="mx-auto max-w-4xl rounded-2xl border border-white/15 bg-[#0a0f18]/95 p-6 shadow-panel sm:p-10 print:border-0 print:bg-white print:p-0 print:text-slate-900 print:shadow-none">
-        {/* Header */}
-        <header className="border-b border-white/15 pb-6 print:border-slate-300">
-          <h1 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl print:text-slate-900">
+      <article className="mx-auto max-w-4xl rounded-xl border border-[var(--border-hairline)] bg-[var(--bg-surface)] p-6 shadow-editorial sm:p-10 print:border-0 print:p-0 print:shadow-none">
+        <header className="border-b border-[var(--border-hairline)] pb-6 print:border-slate-300">
+          <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl">
             {profile.name.toUpperCase()}
           </h1>
-          <p className="mt-1.5 font-mono text-xs font-semibold tracking-wider text-emerald-400 print:text-slate-700">
+          <p className="mt-1.5 font-mono text-xs font-semibold tracking-wider text-[var(--accent-primary)] print:text-slate-700">
             DATA SCIENCE • MACHINE LEARNING • AI ENGINEERING
           </p>
 
-          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs text-slate-300 print:text-slate-700">
+          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 font-mono text-xs text-[var(--text-secondary)]">
             <span className="inline-flex items-center gap-1.5">
-              <MapPin className="h-3.5 w-3.5 text-emerald-400 print:text-slate-700" />
+              <MapPin className="h-3.5 w-3.5 text-[var(--accent-primary)]" aria-hidden="true" />
               {profile.location}
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <Phone className="h-3.5 w-3.5 text-emerald-400 print:text-slate-700" />
+              <Phone className="h-3.5 w-3.5 text-[var(--accent-primary)]" aria-hidden="true" />
               {profile.phone}
             </span>
-            <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-1.5 hover:text-emerald-300">
-              <Mail className="h-3.5 w-3.5 text-emerald-400 print:text-slate-700" />
+            <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-1.5 hover:underline">
+              <Mail className="h-3.5 w-3.5 text-[var(--accent-primary)]" aria-hidden="true" />
               {profile.email}
             </a>
             <a
               href={profile.githubHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-emerald-300"
+              className="inline-flex items-center gap-1 hover:underline"
             >
               github.com/Soumya9679
-              <ExternalLink className="h-3 w-3 no-print" />
+              <ExternalLink className="no-print h-3 w-3" aria-hidden="true" />
             </a>
             <a
               href={profile.linkedinHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-emerald-300"
+              className="inline-flex items-center gap-1 hover:underline"
             >
               linkedin.com/in/soumyadip-maity-996686353
-              <ExternalLink className="h-3 w-3 no-print" />
+              <ExternalLink className="no-print h-3 w-3" aria-hidden="true" />
             </a>
           </div>
         </header>
 
-        {/* Summary */}
         <section className="mt-6">
-          <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-emerald-400 print:text-slate-900">
+          <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-[var(--accent-primary)]">
             Professional Summary
           </h2>
-          <p className="mt-2 text-sm leading-relaxed text-slate-300 print:text-slate-700">
-            B.Tech IT undergraduate (8.79 CGPA) specializing in Data Science, ML, and AI. Experienced in Python ML pipelines, NLP, FAISS, and RAG applications, with expertise in model evaluation and FastAPI deployment.
+          <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)]">
+            {profile.summary}
           </p>
         </section>
 
-        {/* Technical Skills */}
-        <section className="mt-6 border-t border-white/10 pt-5 print:border-slate-300">
-          <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-emerald-400 print:text-slate-900">
+        <section className="mt-6 border-t border-[var(--border-hairline)] pt-5">
+          <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-[var(--accent-primary)]">
             Technical Skills
           </h2>
           <div className="mt-3 space-y-2 text-sm">
             {skillCategories.map((cat) => (
-              <div key={cat.id} className="text-slate-300 print:text-slate-700">
-                <span className="font-semibold text-white print:text-slate-900">
-                  {cat.title}:{' '}
-                </span>
+              <div key={cat.id} className="text-[var(--text-secondary)]">
+                <span className="font-semibold text-[var(--text-primary)]">{cat.title}: </span>
                 <span>{cat.items.join(', ')}</span>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Flagship Projects */}
-        <section className="mt-6 border-t border-white/10 pt-5 print:border-slate-300">
-          <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-emerald-400 print:text-slate-900">
-            Key Projects
+        <section className="mt-6 border-t border-[var(--border-hairline)] pt-5">
+          <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-[var(--accent-primary)]">
+            Projects
           </h2>
           <div className="mt-4 space-y-5">
             {cvProjects.map((proj) => (
               <div key={proj.id}>
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h3 className="font-display text-base font-bold text-white print:text-slate-900">
+                  <h3 className="text-base font-bold text-[var(--text-primary)]">
                     {proj.title}{' '}
-                    <span className="font-mono text-xs font-normal text-slate-400 print:text-slate-600">
+                    <span className="font-mono text-xs font-normal text-[var(--text-muted)]">
                       | {proj.category}
                     </span>
                   </h3>
@@ -128,12 +117,12 @@ export default function ResumePage() {
                     href={proj.githubHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-mono text-xs text-emerald-300 hover:underline print:text-slate-700"
+                    className="font-mono text-xs text-[var(--accent-primary)] hover:underline"
                   >
                     {proj.githubHref.replace('https://', '')}
                   </a>
                 </div>
-                <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-300 print:text-slate-700">
+                <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-[var(--text-secondary)]">
                   {proj.highlights.map((h) => (
                     <li key={h}>{h}</li>
                   ))}
@@ -143,43 +132,37 @@ export default function ResumePage() {
           </div>
         </section>
 
-        {/* Achievements & Technical Leadership */}
-        <section className="mt-6 border-t border-white/10 pt-5 print:border-slate-300">
-          <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-emerald-400 print:text-slate-900">
+        <section className="mt-6 border-t border-[var(--border-hairline)] pt-5">
+          <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-[var(--accent-primary)]">
             Achievements &amp; Technical Leadership
           </h2>
-          <ul className="mt-3 space-y-2.5 text-sm text-slate-300 print:text-slate-700">
+          <ul className="mt-3 space-y-2.5 text-sm text-[var(--text-secondary)]">
             {leadershipItems.map((item) => (
               <li key={item.title}>
-                <span className="font-semibold text-white print:text-slate-900">
-                  {item.title}:{' '}
-                </span>
+                <span className="font-semibold text-[var(--text-primary)]">{item.title}: </span>
                 <span>{item.description}</span>
               </li>
             ))}
           </ul>
         </section>
 
-        {/* Education */}
-        <section className="mt-6 border-t border-white/10 pt-5 print:border-slate-300">
-          <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-emerald-400 print:text-slate-900">
+        <section className="mt-6 border-t border-[var(--border-hairline)] pt-5">
+          <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-[var(--accent-primary)]">
             Education
           </h2>
           <div className="mt-3 space-y-3">
             {educationItems.map((edu) => (
               <div key={edu.degree} className="flex flex-wrap items-baseline justify-between gap-2">
                 <div>
-                  <h3 className="text-sm font-bold text-white print:text-slate-900">
+                  <h3 className="text-sm font-bold text-[var(--text-primary)]">
                     {edu.degree}{' '}
-                    <span className="font-mono text-xs font-medium text-emerald-300 print:text-slate-700">
+                    <span className="font-mono text-xs font-semibold text-[var(--accent-primary)]">
                       | {edu.score}
                     </span>
                   </h3>
-                  <p className="text-xs text-slate-400 print:text-slate-600">{edu.institution}</p>
+                  <p className="text-xs text-[var(--text-muted)]">{edu.institution}</p>
                 </div>
-                <span className="font-mono text-xs text-slate-400 print:text-slate-600">
-                  {edu.period}
-                </span>
+                <span className="font-mono text-xs text-[var(--text-muted)]">{edu.period}</span>
               </div>
             ))}
           </div>

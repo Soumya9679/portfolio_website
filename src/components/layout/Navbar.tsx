@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Command, Download, FileText, Menu, X } from 'lucide-react';
+import { Command, Download, FileText, Menu, Moon, Sun, X } from 'lucide-react';
 import { navItems, profile } from '@/lib/portfolio-data';
 import { cn } from '@/lib/utils';
 
@@ -12,14 +12,30 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [darkMode, setDarkMode] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === '/';
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem('sm-theme');
+    if (saved === 'dark') {
+      document.documentElement.classList.add('dark');
+      setDarkMode(true);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const next = !darkMode;
+    setDarkMode(next);
+    document.documentElement.classList.toggle('dark', next);
+    window.localStorage.setItem('sm-theme', next ? 'dark' : 'light');
+  };
 
   useEffect(() => {
     if (!isHome) return;
 
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 16);
 
       for (let i = navItems.length - 1; i >= 0; i--) {
         const id = navItems[i].href.slice(1);
@@ -68,37 +84,31 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        'fixed left-0 right-0 top-0 z-50 transition-all duration-300',
-        scrolled ? 'py-2.5' : 'py-4'
+        'fixed left-0 right-0 top-0 z-50 border-b transition-colors duration-200',
+        scrolled || !isHome
+          ? 'border-[var(--border-hairline)] bg-[var(--bg-page)]/92 backdrop-blur-md'
+          : 'border-transparent bg-[var(--bg-page)]/75 backdrop-blur-sm'
       )}
     >
       <div className="section-shell">
-        <nav
-          className={cn(
-            'flex items-center justify-between rounded-2xl border px-4 py-2.5 transition-all duration-300 md:px-5',
-            scrolled || !isHome
-              ? 'border-white/12 bg-[#090d14]/88 shadow-panel backdrop-blur-xl'
-              : 'border-white/8 bg-[#090d14]/55 backdrop-blur-md'
-          )}
-        >
-          {/* Brand */}
+        <nav className="flex h-16 items-center justify-between gap-4" aria-label="Primary">
+          {/* Editorial Brand */}
           <Link
             href="/"
-            className="group flex items-center gap-2.5 font-display text-base font-bold tracking-tight text-white"
-            aria-label="Go to overview"
+            className="flex items-center gap-2.5 text-sm font-semibold tracking-tight text-[var(--text-primary)]"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-emerald-500/35 bg-emerald-500/15 font-mono text-xs font-bold text-emerald-300 transition group-hover:bg-emerald-500/25">
+            <span className="flex h-8 w-8 items-center justify-center rounded-md border border-[var(--border-strong)] bg-[var(--bg-surface)] font-mono text-xs font-bold text-[var(--accent-primary)]">
               {profile.shortName}
             </span>
-            <span className="hidden sm:inline-flex items-center gap-1.5">
-              <span>Soumyadip Maity</span>
-              <span className="font-mono text-[11px] font-medium text-emerald-400/90">
-                /ml
+            <span className="hidden sm:inline-flex items-baseline gap-2">
+              <span className="font-semibold">{profile.name}</span>
+              <span className="font-mono text-[11px] font-normal text-[var(--text-muted)]">
+                ML &amp; AI
               </span>
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav Links */}
           <ul className="hidden items-center gap-1 lg:flex">
             {navItems.map((item) => {
               const isActive = isHome && activeSection === item.href.slice(1);
@@ -108,55 +118,63 @@ export default function Navbar() {
                     href={isHome ? item.href : `/${item.href}`}
                     onClick={(event) => handleNavClick(event, item.href)}
                     className={cn(
-                      'relative inline-flex rounded-lg px-3 py-1.5 text-xs font-medium transition-colors',
-                      isActive ? 'text-white' : 'text-slate-400 hover:text-slate-100'
+                      'relative inline-flex rounded-md px-3 py-1.5 text-xs font-medium transition-colors',
+                      isActive
+                        ? 'bg-[var(--bg-subtle)] text-[var(--text-primary)] font-semibold'
+                        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                     )}
                   >
-                    {isActive && (
-                      <motion.span
-                        layoutId="activeNavPill"
-                        className="absolute inset-0 rounded-lg border border-emerald-500/25 bg-emerald-500/10"
-                        transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-                      />
-                    )}
-                    <span className="relative z-10">{item.label}</span>
+                    {item.label}
                   </a>
                 </li>
               );
             })}
           </ul>
 
-          {/* Right Actions */}
-          <div className="hidden items-center gap-2.5 md:flex">
+          {/* Right Utilities */}
+          <div className="hidden items-center gap-2 md:flex">
             <button
               onClick={openPalette}
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-slate-300 transition hover:border-emerald-500/35 hover:text-white"
-              title="Open Command Palette (Ctrl+K)"
+              className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] px-2.5 py-1.5 text-xs font-medium text-[var(--text-secondary)] transition hover:border-[var(--border-strong)] hover:text-[var(--text-primary)]"
+              aria-label="Open command search"
             >
-              <Command className="h-3.5 w-3.5 text-emerald-400" />
+              <Command className="h-3.5 w-3.5 text-[var(--accent-primary)]" aria-hidden="true" />
               <span className="hidden xl:inline">Search</span>
               <span className="kbd-cap">Ctrl K</span>
+            </button>
+
+            <button
+              onClick={toggleTheme}
+              className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-secondary)] transition hover:border-[var(--border-strong)] hover:text-[var(--text-primary)]"
+              aria-label={darkMode ? 'Switch to light editorial theme' : 'Switch to dark studio theme'}
+              title={darkMode ? 'Light Editorial Mode' : 'Dark Studio Mode'}
+            >
+              {darkMode ? (
+                <Sun className="h-4 w-4" aria-hidden="true" />
+              ) : (
+                <Moon className="h-4 w-4" aria-hidden="true" />
+              )}
             </button>
 
             <Link
               href="/resume"
               className={cn(
-                'inline-flex items-center gap-1.5 rounded-xl border px-3.5 py-2 text-xs font-semibold transition',
+                'inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-semibold transition',
                 pathname === '/resume'
-                  ? 'border-emerald-500/40 bg-emerald-500/15 text-emerald-300'
-                  : 'border-white/10 bg-white/[0.04] text-slate-200 hover:border-emerald-500/35 hover:text-white'
+                  ? 'border-[var(--accent-primary)] bg-[var(--accent-primary-soft)] text-[var(--accent-primary)]'
+                  : 'border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:border-[var(--border-strong)]'
               )}
             >
-              <FileText className="h-3.5 w-3.5" />
+              <FileText className="h-3.5 w-3.5" aria-hidden="true" />
               <span>CV</span>
             </Link>
 
             <a
               href={profile.resumeHref}
               download
-              className="button-primary px-3.5 py-2 text-xs"
+              className="button-primary px-3 py-1.5 text-xs"
             >
-              <Download className="h-3.5 w-3.5" />
+              <Download className="h-3.5 w-3.5" aria-hidden="true" />
               <span>PDF</span>
             </a>
           </div>
@@ -164,15 +182,22 @@ export default function Navbar() {
           {/* Mobile Controls */}
           <div className="flex items-center gap-2 md:hidden">
             <button
-              onClick={openPalette}
-              className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-300"
-              aria-label="Open search palette"
+              onClick={toggleTheme}
+              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-primary)]"
+              aria-label="Toggle theme"
             >
-              <Command className="h-4 w-4 text-emerald-400" />
+              {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </button>
+            <button
+              onClick={openPalette}
+              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-primary)]"
+              aria-label="Open command search"
+            >
+              <Command className="h-4 w-4" />
             </button>
             <button
               onClick={() => setIsOpen((v) => !v)}
-              className="relative z-50 flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-white"
+              className="relative z-50 flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--text-primary)]"
               aria-label="Toggle navigation menu"
               aria-expanded={isOpen}
             >
@@ -186,22 +211,19 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -16 }}
+            initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 flex flex-col bg-[#05070b]/96 px-6 pt-24 pb-8 backdrop-blur-2xl md:hidden"
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.18 }}
+            className="fixed inset-x-0 top-16 bottom-0 z-40 flex flex-col border-t border-[var(--border-hairline)] bg-[var(--bg-page)] px-6 py-6 md:hidden"
           >
-            <span className="font-mono text-[11px] uppercase tracking-widest text-emerald-400">
-              Navigation
-            </span>
-            <div className="mt-4 flex flex-col gap-1.5">
+            <div className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={isHome ? item.href : `/${item.href}`}
                   onClick={(event) => handleNavClick(event, item.href)}
-                  className="rounded-xl border border-transparent px-4 py-3 font-display text-lg font-semibold text-slate-200 hover:border-white/10 hover:bg-white/[0.04] hover:text-white"
+                  className="rounded-lg px-3 py-3 text-base font-medium text-[var(--text-primary)] hover:bg-[var(--bg-subtle)]"
                 >
                   {item.label}
                 </a>
@@ -209,14 +231,14 @@ export default function Navbar() {
               <Link
                 href="/resume"
                 onClick={() => setIsOpen(false)}
-                className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-3 font-display text-lg font-semibold text-emerald-300"
+                className="rounded-lg bg-[var(--bg-subtle)] px-3 py-3 text-base font-semibold text-[var(--accent-primary)]"
               >
                 Interactive CV / Resume
               </Link>
             </div>
 
-            <div className="mt-auto border-t border-white/10 pt-5">
-              <a href={profile.resumeHref} download className="button-primary w-full py-3.5">
+            <div className="mt-auto border-t border-[var(--border-hairline)] pt-5">
+              <a href={profile.resumeHref} download className="button-primary w-full py-3">
                 <Download className="h-4 w-4" />
                 Download Resume PDF
               </a>

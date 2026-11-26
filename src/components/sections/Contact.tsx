@@ -17,7 +17,6 @@ import {
   Mail,
   MapPin,
   Send,
-  Terminal,
   XCircle,
 } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -40,7 +39,7 @@ const iconMap = {
 } as const;
 
 const inputClass =
-  'w-full rounded-xl border border-white/10 bg-[#05070b]/90 px-4 py-3 text-sm text-white placeholder:text-slate-500 transition focus:border-emerald-500/50 focus:outline-none focus:ring-2 focus:ring-emerald-500/20';
+  'w-full rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-page)] px-3.5 py-2.5 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] transition focus:border-[var(--accent-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary-soft)]';
 
 export default function Contact() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -87,52 +86,52 @@ export default function Contact() {
     <section id="contact" className="section-y relative">
       <div className="section-shell">
         <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
-          {/* Left: Direct Engineering Channels */}
+          {/* Left: Direct Channels */}
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.05 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.25 }}
             className="lg:col-span-5"
           >
             <SectionHeading
               index="05"
-              eyebrow="Direct Contact"
-              title="Open to AI/ML roles, research collaborations & systems builds."
-              subtitle="Reach out directly via email or send a structured inquiry using the form."
+              eyebrow="Contact"
+              title="Open to Data Science, ML & AI Engineering opportunities."
+              subtitle="Reach out directly via email or dispatch a message using the form."
             />
 
-            <div className="panel-surface rounded-2xl p-5 sm:p-6">
-              <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-4">
+            <div className="editorial-card p-5 sm:p-6">
+              <div className="flex items-center justify-between gap-3 border-b border-[var(--border-hairline)] pb-4">
                 <div className="min-w-0">
-                  <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
                     Direct Email
                   </span>
-                  <p className="mt-1 truncate font-mono text-sm font-semibold text-emerald-300 sm:text-base">
+                  <p className="mt-1 truncate font-mono text-sm font-semibold text-[var(--accent-primary)] sm:text-base">
                     {profile.email}
                   </p>
                 </div>
 
                 <button
                   onClick={handleCopyEmail}
-                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-300 transition hover:border-emerald-500/40 hover:text-emerald-300"
+                  className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-page)] text-[var(--text-secondary)] transition hover:border-[var(--border-strong)] hover:text-[var(--text-primary)]"
                   title="Copy email"
-                  aria-label="Copy email"
+                  aria-label="Copy email address"
                 >
                   {copied ? (
-                    <Check className="h-4 w-4 text-emerald-400" />
+                    <Check className="h-4 w-4 text-[var(--accent-teal)]" aria-hidden="true" />
                   ) : (
-                    <Copy className="h-4 w-4" />
+                    <Copy className="h-4 w-4" aria-hidden="true" />
                   )}
                 </button>
               </div>
 
-              <div className="mt-4 flex items-center gap-2 border-b border-white/10 pb-4 font-mono text-xs text-slate-400">
-                <MapPin className="h-3.5 w-3.5 text-emerald-400" />
+              <div className="mt-4 flex items-center gap-2 border-b border-[var(--border-hairline)] pb-4 font-mono text-xs text-[var(--text-secondary)]">
+                <MapPin className="h-3.5 w-3.5 text-[var(--accent-primary)]" aria-hidden="true" />
                 <span>{profile.location}</span>
               </div>
 
-              <div className="mt-5 space-y-2.5">
+              <div className="mt-5 space-y-2">
                 {socialLinks.map(({ href, label, username, kind }) => {
                   const Icon = iconMap[kind];
                   return (
@@ -141,18 +140,23 @@ export default function Contact() {
                       href={href}
                       target={href.startsWith('mailto') ? undefined : '_blank'}
                       rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                      className="group flex items-center gap-3 rounded-xl border border-white/10 bg-[#05070b]/70 p-3 transition hover:border-emerald-500/35 hover:bg-white/[0.03]"
+                      className="group flex items-center gap-3 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-page)] p-3 transition hover:border-[var(--border-strong)]"
                     >
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-emerald-500/20 bg-emerald-500/10 text-emerald-400">
-                        <Icon className="h-4 w-4" />
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-[var(--border-hairline)] bg-[var(--bg-surface)] text-[var(--accent-primary)]">
+                        <Icon className="h-4 w-4" aria-hidden="true" />
                       </span>
                       <div className="min-w-0 flex-1">
-                        <span className="block text-xs font-semibold text-white">{label}</span>
-                        <span className="block truncate font-mono text-[11px] text-slate-400">
+                        <span className="block text-xs font-semibold text-[var(--text-primary)]">
+                          {label}
+                        </span>
+                        <span className="block truncate font-mono text-[11px] text-[var(--text-muted)]">
                           {username}
                         </span>
                       </div>
-                      <ArrowUpRight className="h-4 w-4 text-slate-500 transition group-hover:text-emerald-400" />
+                      <ArrowUpRight
+                        className="h-4 w-4 text-[var(--text-muted)] group-hover:text-[var(--accent-primary)]"
+                        aria-hidden="true"
+                      />
                     </a>
                   );
                 })}
@@ -160,30 +164,31 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Right: Contact Form */}
+          {/* Right: Form */}
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.05 }}
-            transition={{ duration: 0.3, delay: 0.04 }}
-            className="panel-surface rounded-2xl p-6 sm:p-8 lg:col-span-7"
+            transition={{ duration: 0.25, delay: 0.04 }}
+            className="editorial-card p-6 sm:p-8 lg:col-span-7"
           >
-            <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-emerald-400">
-              <Terminal className="h-3.5 w-3.5" />
-              <span>Dispatch Message</span>
-            </div>
-
-            <h3 className="mt-2 font-display text-2xl font-bold text-white">
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-[var(--accent-primary)]">
+              Send Inquiry
+            </span>
+            <h3 className="mt-1.5 text-2xl font-bold text-[var(--text-primary)]">
               Start a conversation
             </h3>
-            <p className="mt-1.5 text-xs text-slate-400 sm:text-sm">
-              Share role details, ML/AI project requirements, or collaboration ideas.
+            <p className="mt-1 text-xs text-[var(--text-secondary)] sm:text-sm">
+              Share ML/AI internship or engineering roles, project ideas, or research questions.
             </p>
 
             <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4" noValidate>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="name" className="mb-1.5 block font-mono text-[11px] text-slate-300">
+                  <label
+                    htmlFor="name"
+                    className="mb-1.5 block font-mono text-[11px] font-semibold text-[var(--text-secondary)]"
+                  >
                     NAME
                   </label>
                   <input
@@ -191,18 +196,22 @@ export default function Contact() {
                     {...register('name')}
                     placeholder="Your name"
                     autoComplete="name"
-                    className={cn(inputClass, errors.name && 'border-red-500/50')}
+                    aria-invalid={Boolean(errors.name)}
+                    className={cn(inputClass, errors.name && 'border-red-600')}
                   />
                   {errors.name && (
-                    <p className="mt-1.5 flex items-center gap-1 text-xs text-red-400">
-                      <XCircle className="h-3.5 w-3.5" />
+                    <p className="mt-1.5 flex items-center gap-1 text-xs text-red-600 dark:text-red-400">
+                      <XCircle className="h-3.5 w-3.5" aria-hidden="true" />
                       {errors.name.message}
                     </p>
                   )}
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="mb-1.5 block font-mono text-[11px] text-slate-300">
+                  <label
+                    htmlFor="email"
+                    className="mb-1.5 block font-mono text-[11px] font-semibold text-[var(--text-secondary)]"
+                  >
                     EMAIL
                   </label>
                   <input
@@ -211,11 +220,12 @@ export default function Contact() {
                     type="email"
                     placeholder="you@company.com"
                     autoComplete="email"
-                    className={cn(inputClass, errors.email && 'border-red-500/50')}
+                    aria-invalid={Boolean(errors.email)}
+                    className={cn(inputClass, errors.email && 'border-red-600')}
                   />
                   {errors.email && (
-                    <p className="mt-1.5 flex items-center gap-1 text-xs text-red-400">
-                      <XCircle className="h-3.5 w-3.5" />
+                    <p className="mt-1.5 flex items-center gap-1 text-xs text-red-600 dark:text-red-400">
+                      <XCircle className="h-3.5 w-3.5" aria-hidden="true" />
                       {errors.email.message}
                     </p>
                   )}
@@ -223,19 +233,23 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="mb-1.5 block font-mono text-[11px] text-slate-300">
+                <label
+                  htmlFor="message"
+                  className="mb-1.5 block font-mono text-[11px] font-semibold text-[var(--text-secondary)]"
+                >
                   MESSAGE
                 </label>
                 <textarea
                   id="message"
                   {...register('message')}
-                  placeholder="Tell me about the role, system problem, or timeline..."
+                  placeholder="Tell me about the role, dataset/model challenge, or timeline..."
                   rows={5}
-                  className={cn(inputClass, 'resize-none', errors.message && 'border-red-500/50')}
+                  aria-invalid={Boolean(errors.message)}
+                  className={cn(inputClass, 'resize-none', errors.message && 'border-red-600')}
                 />
                 {errors.message && (
-                  <p className="mt-1.5 flex items-center gap-1 text-xs text-red-400">
-                    <XCircle className="h-3.5 w-3.5" />
+                  <p className="mt-1.5 flex items-center gap-1 text-xs text-red-600 dark:text-red-400">
+                    <XCircle className="h-3.5 w-3.5" aria-hidden="true" />
                     {errors.message.message}
                   </p>
                 )}
@@ -244,31 +258,37 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="button-primary w-full py-3.5 disabled:opacity-60"
+                className="button-primary w-full py-3 disabled:opacity-60"
               >
                 {isSubmitting ? (
                   <>
-                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
                     <span>Sending...</span>
                   </>
                 ) : (
                   <>
-                    <Send className="h-4 w-4" />
+                    <Send className="h-4 w-4" aria-hidden="true" />
                     <span>Send Message</span>
                   </>
                 )}
               </button>
 
               {submitStatus === 'success' && (
-                <div className="flex items-center gap-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-xs text-emerald-300 sm:text-sm">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />
-                  <span>Message delivered successfully. I will respond shortly.</span>
+                <div
+                  role="status"
+                  className="flex items-center gap-2 rounded-lg border border-emerald-600/30 bg-emerald-500/10 px-4 py-3 text-xs font-medium text-[var(--accent-teal)] sm:text-sm"
+                >
+                  <CheckCircle2 className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span>Message sent successfully. I will respond shortly.</span>
                 </div>
               )}
 
               {submitStatus === 'error' && (
-                <div className="flex items-center gap-2.5 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-xs text-red-300 sm:text-sm">
-                  <XCircle className="h-4 w-4 shrink-0 text-red-400" />
+                <div
+                  role="alert"
+                  className="flex items-center gap-2 rounded-lg border border-red-600/30 bg-red-500/10 px-4 py-3 text-xs font-medium text-red-600 dark:text-red-400 sm:text-sm"
+                >
+                  <XCircle className="h-4 w-4 shrink-0" aria-hidden="true" />
                   <span>Delivery failed. Please email {profile.email} directly.</span>
                 </div>
               )}

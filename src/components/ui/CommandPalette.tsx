@@ -11,7 +11,6 @@ import {
   Github,
   Layers,
   Linkedin,
-  Mail,
   Search,
   Terminal,
   X,
@@ -20,11 +19,11 @@ import { navItems, profile, projects } from '@/lib/portfolio-data';
 
 interface CommandAction {
   id: string;
-  group: 'Navigation' | 'Flagship Systems' | 'Actions';
+  group: 'Sections' | 'ML & AI Systems' | 'Links & Actions';
   label: string;
   hint: string;
   keywords: string;
-  icon: 'nav' | 'system' | 'github' | 'linkedin' | 'leetcode' | 'mail' | 'resume' | 'copy';
+  icon: 'nav' | 'system' | 'github' | 'linkedin' | 'leetcode' | 'resume' | 'copy';
   run: () => void;
 }
 
@@ -61,7 +60,7 @@ export default function CommandPalette() {
   const actions = useMemo<CommandAction[]>(() => {
     const navActions: CommandAction[] = navItems.map((item) => ({
       id: `nav-${item.href}`,
-      group: 'Navigation',
+      group: 'Sections',
       label: `Jump to ${item.label}`,
       hint: item.href,
       keywords: `${item.label} section`,
@@ -78,7 +77,7 @@ export default function CommandPalette() {
 
     const projectActions: CommandAction[] = projects.map((project) => ({
       id: `proj-${project.id}`,
-      group: 'Flagship Systems',
+      group: 'ML & AI Systems',
       label: project.title,
       hint: project.category,
       keywords: `${project.title} ${project.tags.join(' ')} ${project.context}`,
@@ -92,17 +91,17 @@ export default function CommandPalette() {
         document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
         setTimeout(() => {
           window.dispatchEvent(new CustomEvent('open-project-dossier', { detail: project.id }));
-        }, 250);
+        }, 220);
       },
     }));
 
     const quickActions: CommandAction[] = [
       {
-        id: 'act-resume-page',
-        group: 'Actions',
-        label: 'Open Interactive Resume / CV',
+        id: 'act-resume',
+        group: 'Links & Actions',
+        label: 'Open Interactive CV / Resume',
         hint: '/resume',
-        keywords: 'cv resume education cgpa print pdf',
+        keywords: 'cv resume education cgpa print',
         icon: 'resume',
         run: () => {
           setOpen(false);
@@ -111,10 +110,10 @@ export default function CommandPalette() {
       },
       {
         id: 'act-copy-email',
-        group: 'Actions',
-        label: copied ? 'Copied Email to Clipboard' : `Copy Email (${profile.email})`,
+        group: 'Links & Actions',
+        label: copied ? 'Email Copied' : `Copy Email (${profile.email})`,
         hint: 'Clipboard',
-        keywords: 'email mail contact copy',
+        keywords: 'email contact copy',
         icon: 'copy',
         run: () => {
           navigator.clipboard.writeText(profile.email);
@@ -124,8 +123,8 @@ export default function CommandPalette() {
       },
       {
         id: 'act-github',
-        group: 'Actions',
-        label: 'Open GitHub Profile (@Soumya9679)',
+        group: 'Links & Actions',
+        label: 'GitHub (@Soumya9679)',
         hint: 'External',
         keywords: 'github code repos',
         icon: 'github',
@@ -136,10 +135,10 @@ export default function CommandPalette() {
       },
       {
         id: 'act-linkedin',
-        group: 'Actions',
-        label: 'Open LinkedIn Profile',
+        group: 'Links & Actions',
+        label: 'LinkedIn Profile',
         hint: 'External',
-        keywords: 'linkedin career profile',
+        keywords: 'linkedin career',
         icon: 'linkedin',
         run: () => {
           setOpen(false);
@@ -148,10 +147,10 @@ export default function CommandPalette() {
       },
       {
         id: 'act-leetcode',
-        group: 'Actions',
-        label: 'Open LeetCode Profile',
+        group: 'Links & Actions',
+        label: 'LeetCode (@Soumya9679)',
         hint: 'External',
-        keywords: 'leetcode dsa algorithms',
+        keywords: 'leetcode dsa',
         icon: 'leetcode',
         run: () => {
           setOpen(false);
@@ -177,21 +176,19 @@ export default function CommandPalette() {
   const renderIcon = (kind: CommandAction['icon']) => {
     switch (kind) {
       case 'system':
-        return <Terminal className="h-4 w-4 text-emerald-400" />;
+        return <Terminal className="h-4 w-4 text-[var(--accent-primary)]" aria-hidden="true" />;
       case 'github':
-        return <Github className="h-4 w-4 text-slate-300" />;
+        return <Github className="h-4 w-4 text-[var(--text-primary)]" aria-hidden="true" />;
       case 'linkedin':
-        return <Linkedin className="h-4 w-4 text-cyan-400" />;
+        return <Linkedin className="h-4 w-4 text-[var(--accent-primary)]" aria-hidden="true" />;
       case 'leetcode':
-        return <Code2 className="h-4 w-4 text-amber-400" />;
-      case 'mail':
-        return <Mail className="h-4 w-4 text-emerald-400" />;
+        return <Code2 className="h-4 w-4 text-[var(--accent-amber)]" aria-hidden="true" />;
       case 'copy':
-        return <Copy className="h-4 w-4 text-emerald-400" />;
+        return <Copy className="h-4 w-4 text-[var(--accent-teal)]" aria-hidden="true" />;
       case 'resume':
-        return <FileText className="h-4 w-4 text-cyan-400" />;
+        return <FileText className="h-4 w-4 text-[var(--accent-primary)]" aria-hidden="true" />;
       default:
-        return <Layers className="h-4 w-4 text-slate-400" />;
+        return <Layers className="h-4 w-4 text-[var(--text-muted)]" aria-hidden="true" />;
     }
   };
 
@@ -209,70 +206,75 @@ export default function CommandPalette() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setOpen(false)}
-            className="fixed inset-0 bg-black/75 backdrop-blur-sm"
+            className="fixed inset-0 bg-black/50 backdrop-blur-xs"
           />
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: -12 }}
+            initial={{ opacity: 0, scale: 0.97, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: -12 }}
-            transition={{ duration: 0.16 }}
-            className="relative z-10 w-full max-w-xl overflow-hidden rounded-2xl border border-white/15 bg-[#0b1019]/95 shadow-2xl backdrop-blur-2xl"
+            exit={{ opacity: 0, scale: 0.97, y: -10 }}
+            transition={{ duration: 0.15 }}
+            className="relative z-10 w-full max-w-xl overflow-hidden rounded-xl border border-[var(--border-strong)] bg-[var(--bg-surface)] shadow-editorial-lg"
           >
-            <div className="flex items-center gap-3 border-b border-white/10 px-4 py-3.5">
-              <Search className="h-4 w-4 text-emerald-400 shrink-0" />
+            <div className="flex items-center gap-3 border-b border-[var(--border-hairline)] px-4 py-3.5">
+              <Search className="h-4 w-4 shrink-0 text-[var(--accent-primary)]" aria-hidden="true" />
               <input
                 autoFocus
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search systems, FastAPI, RAG, SIH, or jump to section..."
-                className="w-full bg-transparent text-sm text-white placeholder:text-slate-500 focus:outline-none"
+                placeholder="Search ML models, FAISS, FastAPI, SIH, or jump to section..."
+                className="w-full bg-transparent text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none"
               />
               <button
                 onClick={() => setOpen(false)}
-                className="rounded-lg border border-white/10 p-1 text-slate-400 hover:text-white"
+                className="cursor-pointer rounded-md border border-[var(--border-hairline)] p-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                 aria-label="Close command palette"
               >
-                <X className="h-3.5 w-3.5" />
+                <X className="h-3.5 w-3.5" aria-hidden="true" />
               </button>
             </div>
 
             <div className="max-h-[55vh] overflow-y-auto p-2">
               {filtered.length === 0 ? (
-                <div className="py-10 text-center text-xs font-mono text-slate-500">
-                  No matching commands or systems for &quot;{query}&quot;
+                <div className="py-10 text-center font-mono text-xs text-[var(--text-muted)]">
+                  No matching results for &quot;{query}&quot;
                 </div>
               ) : (
                 filtered.map((item) => (
                   <button
                     key={item.id}
                     onClick={item.run}
-                    className="group flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left transition hover:bg-white/[0.06]"
+                    className="group flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-2.5 text-left transition hover:bg-[var(--bg-subtle)]"
                   >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03]">
+                    <div className="flex min-w-0 items-center gap-3">
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-[var(--border-hairline)] bg-[var(--bg-page)]">
                         {renderIcon(item.icon)}
                       </span>
                       <div className="min-w-0">
-                        <p className="truncate text-sm font-medium text-slate-100 group-hover:text-white">
+                        <p className="truncate text-sm font-medium text-[var(--text-primary)]">
                           {item.label}
                         </p>
-                        <p className="font-mono text-[11px] text-slate-500">{item.group}</p>
+                        <p className="font-mono text-[11px] text-[var(--text-muted)]">
+                          {item.group}
+                        </p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 shrink-0 ml-3">
-                      <span className="hidden sm:inline font-mono text-[11px] text-slate-400">
+                    <div className="ml-3 flex shrink-0 items-center gap-2">
+                      <span className="hidden font-mono text-[11px] text-[var(--text-muted)] sm:inline">
                         {item.hint}
                       </span>
-                      <ArrowRight className="h-3.5 w-3.5 text-slate-600 group-hover:text-emerald-400 transition-colors" />
+                      <ArrowRight
+                        className="h-3.5 w-3.5 text-[var(--text-muted)] group-hover:text-[var(--accent-primary)]"
+                        aria-hidden="true"
+                      />
                     </div>
                   </button>
                 ))
               )}
             </div>
 
-            <div className="flex items-center justify-between border-t border-white/10 bg-black/30 px-4 py-2 text-[11px] font-mono text-slate-500">
-              <span>Navigate engineering dossier</span>
+            <div className="flex items-center justify-between border-t border-[var(--border-hairline)] bg-[var(--bg-subtle)] px-4 py-2 font-mono text-[11px] text-[var(--text-muted)]">
+              <span>Navigate ML &amp; AI Dossier</span>
               <span className="flex items-center gap-1.5">
                 <span className="kbd-cap">ESC</span> to close
               </span>

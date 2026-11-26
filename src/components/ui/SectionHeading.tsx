@@ -29,20 +29,19 @@ export default function SectionHeading({
         )}
       >
         {index && (
-          <span className="font-mono text-xs font-semibold text-emerald-400/80">
-            {index}
+          <span className="font-mono text-xs font-semibold text-[var(--accent-primary)]">
+            §{index}
           </span>
         )}
-        <span className="glass-pill">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-          {eyebrow}
-        </span>
+        <span className="editorial-pill">{eyebrow}</span>
       </div>
-      <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.12]">
+
+      <h2 className="mt-3.5 text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl lg:text-[2.65rem] lg:leading-[1.12]">
         {title}
       </h2>
+
       {subtitle && (
-        <p className="mt-3.5 text-sm leading-relaxed text-slate-400 sm:text-base">
+        <p className="mt-3 text-sm leading-relaxed text-[var(--text-secondary)] sm:text-base">
           {subtitle}
         </p>
       )}
