@@ -3,29 +3,50 @@
 export default function AnimatedBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
-      {/* Base Space Background */}
-      <div className="absolute inset-0 bg-[#05070d]" />
+      {/* Base Obsidian Surface */}
+      <div className="absolute inset-0 bg-[#05070b]" />
 
-      {/* Grid Mesh Overlay */}
+      {/* Precision Coordinate Dot Matrix */}
       <div
-        className="absolute inset-0 opacity-[0.15]"
+        className="absolute inset-0 opacity-[0.22]"
         style={{
-          backgroundImage: `
-            linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)
-          `,
-          backgroundSize: '48px 48px',
+          backgroundImage: 'radial-gradient(rgba(148, 163, 184, 0.25) 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
         }}
       />
 
-      {/* Radial Gradient Glow Orbs */}
-      <div className="absolute -top-[15%] left-[10%] h-[500px] w-[500px] rounded-full bg-emerald-500/15 blur-[120px] animate-float-slow" />
-      <div className="absolute top-[35%] right-[5%] h-[600px] w-[600px] rounded-full bg-cyan-500/10 blur-[140px] animate-float-delayed" />
-      <div className="absolute top-[65%] left-[15%] h-[550px] w-[550px] rounded-full bg-violet-600/10 blur-[130px] animate-float-slow" />
-      <div className="absolute bottom-[-10%] right-[20%] h-[450px] w-[450px] rounded-full bg-teal-500/15 blur-[120px] animate-float-delayed" />
+      {/* Subtle Hairline Architectural Grid */}
+      <div
+        className="absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px)
+          `,
+          backgroundSize: '112px 112px',
+        }}
+      />
 
-      {/* Subtle Vignette Edge */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#05070d]/30 to-[#05070d]" />
+      {/* Top Focal Atmospheric Spotlight */}
+      <div
+        className="absolute -top-48 left-1/2 h-[540px] w-[960px] -translate-x-1/2 rounded-full opacity-35 blur-[130px]"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, rgba(34, 211, 238, 0.1) 45%, transparent 75%)',
+        }}
+      />
+
+      {/* Secondary Lower Depth Ambient Glow */}
+      <div
+        className="absolute bottom-[-18%] right-[-8%] h-[480px] w-[620px] rounded-full opacity-25 blur-[140px]"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(16, 185, 129, 0.16) 0%, rgba(15, 23, 42, 0) 70%)',
+        }}
+      />
+
+      {/* Edge Vignette */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#05070b]" />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/layout/ScrollToTop';
 import AnimatedBackground from '@/components/effects/AnimatedBackground';
+import CommandPalette from '@/components/ui/CommandPalette';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -94,6 +95,7 @@ export default function RootLayout({
       <body className="overflow-x-hidden font-sans">
         <AnimatedBackground />
         <Navbar />
+        <CommandPalette />
         <main className="relative z-10">{children}</main>
         <Footer />
         <ScrollToTop />

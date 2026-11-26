@@ -1,20 +1,26 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
 import {
+  Activity,
   ArrowRight,
   Code2,
-  Download,
+  Cpu,
+  Database,
+  FileText,
   Github,
-  Globe,
   Linkedin,
   Mail,
   MapPin,
-  Sparkles,
+  Mic,
+  ShieldCheck,
+  Terminal,
 } from 'lucide-react';
-import Typewriter from '@/components/effects/Typewriter';
-import { heroStats, profile, socialLinks } from '@/lib/portfolio-data';
+import { heroMetrics, profile, sandboxPresets, socialLinks } from '@/lib/portfolio-data';
+import { cn } from '@/lib/utils';
 
 const iconMap = {
   email: Mail,
@@ -23,76 +29,87 @@ const iconMap = {
   leetcode: Code2,
 } as const;
 
-const floatingBadges = [
-  { name: 'Python 3', position: '-top-4 -left-4', delay: 0 },
-  { name: 'PyTorch', position: 'top-1/4 -right-6', delay: 0.5 },
-  { name: 'Scikit-Learn', position: 'bottom-10 -left-6', delay: 1 },
-  { name: 'Pandas & EDA', position: '-bottom-4 right-4', delay: 1.5 },
-];
+type SandboxTab = 'difficulty' | 'voice' | 'rag';
 
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
+  const [activeTab, setActiveTab] = useState<SandboxTab>('difficulty');
+  const [difficultyIdx, setDifficultyIdx] = useState(0);
+  const [voiceIdx, setVoiceIdx] = useState(0);
+  const [ragIdx, setRagIdx] = useState(0);
+
+  const difficultyScenario = sandboxPresets.difficulty.scenarios[difficultyIdx];
+  const voiceSample = sandboxPresets.voice.samples[voiceIdx];
+  const ragQuery = sandboxPresets.rag.queries[ragIdx];
 
   return (
     <section
       id="home"
-      className="relative isolate min-h-[92vh] pt-32 pb-16 flex items-center overflow-hidden"
+      className="relative isolate flex min-h-[92vh] items-center pt-28 pb-16 sm:pt-32 lg:pb-20"
     >
       <div className="section-shell">
-        <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
-          {/* Main Hero Content */}
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-12">
+          {/* Left Column: Engineering Positioning */}
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
-            className="lg:col-span-7 flex flex-col items-start"
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+            className="lg:col-span-7"
           >
-            {/* Live Availability Status Pill */}
-            <div className="glass-pill mb-6">
+            {/* Status Strip */}
+            <div className="inline-flex flex-wrap items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 backdrop-blur-md">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
               </span>
-              <span>Available for Data Science & ML Roles</span>
+              <span className="font-mono text-[11px] font-medium text-emerald-300">
+                AI/ML &amp; Data Science
+              </span>
+              <span className="text-slate-600">•</span>
+              <span className="font-mono text-[11px] text-slate-300">
+                B.Tech IT @ STCET (8.79 CGPA)
+              </span>
             </div>
 
-            {/* Name Headline */}
-            <h1 className="font-display text-4xl font-black tracking-tight text-white sm:text-6xl md:text-7xl">
-              Hi, I&apos;m{' '}
-              <span className="gradient-text">{profile.name}</span>
+            {/* Headline */}
+            <h1 className="mt-6 font-display text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-[3.5rem] lg:leading-[1.08]">
+              Architecting{' '}
+              <span className="gradient-text">Production ML</span>,{' '}
+              Speech AI &amp; Privacy-First RAG Systems.
             </h1>
 
-            {/* Dynamic Typewriter Role */}
-            <div className="mt-4 mb-6">
-              <Typewriter />
-            </div>
-
-            {/* Subtitle / Focus */}
-            <p className="max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg md:text-xl font-normal">
-              {profile.focus}
+            {/* Concise Bio */}
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+              I&apos;m <span className="font-semibold text-white">{profile.name}</span> — an engineer focused on leakage-free predictive modeling, guardrail-enforced NLP pipelines, and low-latency FastAPI microservices.
             </p>
 
-            {/* Call to Actions */}
-            <div className="mt-8 flex flex-wrap items-center gap-4 w-full sm:w-auto">
-              <a href="#projects" className="button-primary w-full sm:w-auto">
-                <span>View Selected Work</span>
+            {/* Primary Actions */}
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              <a href="#projects" className="button-primary">
+                <span>Inspect Architecture &amp; Systems</span>
                 <ArrowRight className="h-4 w-4" />
               </a>
 
+              <Link href="/resume" className="button-secondary">
+                <FileText className="h-4 w-4 text-emerald-400" />
+                <span>Interactive CV</span>
+              </Link>
+
               <a
-                href={profile.resumeHref}
-                download
-                className="button-secondary w-full sm:w-auto"
+                href={profile.githubHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button-secondary"
               >
-                <Download className="h-4 w-4" />
-                <span>Download Resume</span>
+                <Github className="h-4 w-4" />
+                <span>GitHub</span>
               </a>
             </div>
 
-            {/* Social Quick Links Bar */}
-            <div className="mt-8 flex items-center gap-3 border-t border-white/10 pt-6 w-full">
-              <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 mr-2">
-                Connect:
+            {/* Direct Channels */}
+            <div className="mt-7 flex flex-wrap items-center gap-3 border-t border-white/10 pt-5">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-slate-500">
+                Channels
               </span>
               {socialLinks.map(({ href, label, kind }) => {
                 const Icon = iconMap[kind];
@@ -102,85 +119,299 @@ export default function Hero() {
                     href={href}
                     target={href.startsWith('mailto') ? undefined : '_blank'}
                     rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 backdrop-blur-md transition-all duration-200 hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-emerald-400 hover:scale-105"
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1.5 text-xs font-medium text-slate-300 transition hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-emerald-300"
                     aria-label={label}
-                    title={label}
                   >
-                    <Icon className="h-4.5 w-4.5" />
+                    <Icon className="h-3.5 w-3.5" />
+                    <span>{label}</span>
                   </a>
                 );
               })}
             </div>
 
-            {/* Hero Quick Stats */}
-            <div className="mt-10 grid grid-cols-3 gap-4 w-full max-w-xl rounded-2xl border border-white/10 bg-slate-900/40 p-4 backdrop-blur-md">
-              {heroStats.map((stat) => (
-                <div key={stat.label} className="text-center sm:text-left">
-                  <p className="font-display text-2xl sm:text-3xl font-black text-white">
-                    {stat.value}
+            {/* Verified Benchmark KPIs */}
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {heroMetrics.map((metric) => (
+                <div
+                  key={metric.label}
+                  className="panel-surface rounded-xl p-3.5 transition hover:border-emerald-500/35"
+                >
+                  <p className="font-display text-2xl font-bold text-white">{metric.value}</p>
+                  <p className="mt-0.5 text-xs font-medium text-emerald-300">{metric.label}</p>
+                  <p className="mt-1 font-mono text-[10px] leading-snug text-slate-400">
+                    {metric.detail}
                   </p>
-                  <p className="mt-1 text-xs text-slate-400 font-medium">{stat.label}</p>
                 </div>
               ))}
             </div>
           </motion.div>
 
-          {/* Profile Visual Showcase Side */}
+          {/* Right Column: Engineer Profile + Live ML Pipeline Inspector */}
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: [0.25, 0.4, 0.25, 1] }}
-            className="lg:col-span-5 flex justify-center relative mt-6 lg:mt-0"
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.1, ease: 'easeOut' }}
+            className="lg:col-span-5"
           >
-            <div className="relative w-72 sm:w-80 md:w-88 aspect-square">
-              {/* Outer Glow Halo */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-emerald-500/30 via-cyan-500/20 to-violet-500/30 blur-2xl animate-pulse-glow" />
-
-              {/* Profile Image Glass Container */}
-              <div className="relative h-full w-full overflow-hidden rounded-3xl border border-white/20 bg-slate-900/60 p-2 backdrop-blur-xl shadow-glow-emerald">
-                <div className="relative h-full w-full overflow-hidden rounded-2xl">
-                  <Image
-                    src="/images/profilePic.jpg"
-                    alt={profile.name}
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 320px, 360px"
-                    className="object-cover object-[65%_35%] transition-transform duration-700 hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#05070d]/80 via-transparent to-transparent" />
-                  
-                  {/* Location badge on photo */}
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between rounded-xl border border-white/10 bg-slate-950/70 p-2.5 backdrop-blur-md">
-                    <div className="flex items-center gap-2 text-xs font-semibold text-white">
-                      <MapPin className="h-3.5 w-3.5 text-emerald-400" />
-                      <span>{profile.location}</span>
+            <div className="panel-surface overflow-hidden rounded-2xl border-white/12">
+              {/* Top Profile Header */}
+              <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.02] p-4 sm:p-5">
+                <div className="flex items-center gap-3.5">
+                  <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-emerald-500/35 bg-slate-900">
+                    <Image
+                      src="/images/profilePic.jpg"
+                      alt={profile.name}
+                      fill
+                      priority
+                      sizes="56px"
+                      className="object-cover object-[65%_30%]"
+                    />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h2 className="font-display text-base font-bold text-white">
+                        {profile.name}
+                      </h2>
+                      <span className="rounded bg-emerald-500/15 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-emerald-300">
+                        SIH LEAD
+                      </span>
                     </div>
-                    <span className="flex items-center gap-1 text-[11px] font-medium text-emerald-400">
-                      <Globe className="h-3 w-3" />
-                      <span>Remote</span>
-                    </span>
+                    <p className="text-xs text-slate-400">{profile.role}</p>
+                    <p className="mt-0.5 flex items-center gap-1 font-mono text-[11px] text-slate-500">
+                      <MapPin className="h-3 w-3 text-emerald-400" />
+                      Kolkata, India
+                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* Floating Technology Badges */}
-              {!shouldReduceMotion &&
-                floatingBadges.map((badge) => (
-                  <motion.div
-                    key={badge.name}
-                    animate={{ y: [0, -8, 0] }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                      delay: badge.delay,
-                    }}
-                    className={`absolute ${badge.position} hidden sm:flex items-center gap-1.5 rounded-xl border border-white/15 bg-slate-900/80 px-3 py-1.5 text-xs font-semibold text-slate-200 backdrop-blur-md shadow-lg shadow-black/40`}
-                  >
-                    <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
-                    <span>{badge.name}</span>
-                  </motion.div>
-                ))}
+              {/* Interactive Pipeline Inspector Tabs */}
+              <div className="border-b border-white/10 bg-black/25 px-4 py-2.5">
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-slate-400">
+                    <Terminal className="h-3 w-3 text-emerald-400" />
+                    Interactive Model Inspector
+                  </span>
+                  <span className="font-mono text-[10px] text-emerald-400">LIVE PRESETS</span>
+                </div>
+
+                <div className="grid grid-cols-3 gap-1.5">
+                  {[
+                    { id: 'difficulty' as const, label: 'Difficulty ML', icon: Cpu },
+                    { id: 'voice' as const, label: 'Voice Guard', icon: Mic },
+                    { id: 'rag' as const, label: 'Local RAG', icon: Database },
+                  ].map(({ id, label, icon: Icon }) => (
+                    <button
+                      key={id}
+                      onClick={() => setActiveTab(id)}
+                      className={cn(
+                        'flex items-center justify-center gap-1.5 rounded-lg px-2.5 py-2 font-mono text-[11px] font-medium transition',
+                        activeTab === id
+                          ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/35'
+                          : 'border border-white/5 bg-white/[0.02] text-slate-400 hover:text-white'
+                      )}
+                    >
+                      <Icon className="h-3.5 w-3.5" />
+                      <span>{label}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Inspector Body */}
+              <div className="p-4 sm:p-5">
+                {activeTab === 'difficulty' && (
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between font-mono text-[11px]">
+                      <span className="text-cyan-300">{sandboxPresets.difficulty.endpoint}</span>
+                      <span className="text-slate-500">Random Forest v2.0</span>
+                    </div>
+
+                    <div className="flex flex-wrap gap-1.5">
+                      {sandboxPresets.difficulty.scenarios.map((s, idx) => (
+                        <button
+                          key={s.id}
+                          onClick={() => setDifficultyIdx(idx)}
+                          className={cn(
+                            'rounded-md px-2.5 py-1 font-mono text-[11px] transition',
+                            difficultyIdx === idx
+                              ? 'bg-white/15 text-white border border-white/25'
+                              : 'bg-white/[0.03] text-slate-400 border border-white/5 hover:text-slate-200'
+                          )}
+                        >
+                          {s.label}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="rounded-xl border border-white/10 bg-[#05070b] p-3.5 font-mono text-[11px] space-y-2">
+                      <div className="flex justify-between text-slate-400">
+                        <span>current_difficulty:</span>
+                        <span className="text-white">{difficultyScenario.input.current_difficulty} / 5</span>
+                      </div>
+                      <div className="flex justify-between text-slate-400">
+                        <span>accuracy / recent:</span>
+                        <span className="text-white">
+                          {difficultyScenario.input.accuracy} / {difficultyScenario.input.recent_accuracy}
+                        </span>
+                      </div>
+                      <div className="flex justify-between text-slate-400">
+                        <span>response_time / hints:</span>
+                        <span className="text-white">
+                          {difficultyScenario.input.response_time}s / {difficultyScenario.input.hints_used}
+                        </span>
+                      </div>
+                      <div className="flex justify-between text-slate-400">
+                        <span>consecutive_streak:</span>
+                        <span className="text-emerald-300">
+                          {difficultyScenario.input.consecutive_successes}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="rounded-xl border border-emerald-500/25 bg-emerald-500/[0.07] p-3.5">
+                      <div className="flex items-center justify-between">
+                        <span className="flex items-center gap-1.5 font-mono text-[11px] text-emerald-300">
+                          <Activity className="h-3.5 w-3.5" />
+                          Predicted Level
+                        </span>
+                        <span className="font-display text-xl font-bold text-white">
+                          Level {difficultyScenario.output.next_difficulty} / 5
+                        </span>
+                      </div>
+                      <div className="mt-2 flex items-center justify-between font-mono text-[11px] text-slate-300">
+                        <span>{difficultyScenario.output.decision}</span>
+                        <span>Conf: {Math.round(difficultyScenario.output.confidence * 100)}%</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'voice' && (
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between font-mono text-[11px]">
+                      <span className="text-cyan-300">{sandboxPresets.voice.endpoint}</span>
+                      <span className="text-slate-500">Gate ≥ 0.47</span>
+                    </div>
+
+                    <div className="flex flex-wrap gap-1.5">
+                      {sandboxPresets.voice.samples.map((s, idx) => (
+                        <button
+                          key={s.id}
+                          onClick={() => setVoiceIdx(idx)}
+                          className={cn(
+                            'rounded-md px-2.5 py-1 font-mono text-[11px] transition',
+                            voiceIdx === idx
+                              ? 'bg-white/15 text-white border border-white/25'
+                              : 'bg-white/[0.03] text-slate-400 border border-white/5 hover:text-slate-200'
+                          )}
+                        >
+                          {s.language}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="rounded-xl border border-white/10 bg-[#05070b] p-3.5 font-mono text-[11px] space-y-2">
+                      <p className="text-slate-500">SraVaani ASR Transcript:</p>
+                      <p className="text-white text-xs">{voiceSample.utterance}</p>
+                      <div className="pt-1 flex items-center justify-between text-slate-400">
+                        <span>Cosine Similarity:</span>
+                        <span
+                          className={
+                            voiceSample.allowed ? 'text-emerald-400 font-bold' : 'text-amber-400 font-bold'
+                          }
+                        >
+                          {voiceSample.similarity.toFixed(4)}
+                        </span>
+                      </div>
+                      <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+                        <div
+                          className={cn(
+                            'h-full rounded-full transition-all duration-300',
+                            voiceSample.allowed ? 'bg-emerald-400' : 'bg-amber-400'
+                          )}
+                          style={{ width: `${Math.round(voiceSample.similarity * 100)}%` }}
+                        />
+                      </div>
+                    </div>
+
+                    <div
+                      className={cn(
+                        'rounded-xl border p-3.5 font-mono text-[11px]',
+                        voiceSample.allowed
+                          ? 'border-emerald-500/25 bg-emerald-500/[0.07]'
+                          : 'border-amber-500/30 bg-amber-500/[0.08]'
+                      )}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="flex items-center gap-1.5 text-slate-200">
+                          <ShieldCheck
+                            className={cn(
+                              'h-4 w-4',
+                              voiceSample.allowed ? 'text-emerald-400' : 'text-amber-400'
+                            )}
+                          />
+                          Intent: <strong>{voiceSample.intent}</strong>
+                        </span>
+                        <span
+                          className={
+                            voiceSample.allowed ? 'text-emerald-300' : 'text-amber-300'
+                          }
+                        >
+                          allowed: {String(voiceSample.allowed)}
+                        </span>
+                      </div>
+                      <p className="mt-1.5 text-slate-400">
+                        action: {voiceSample.action ?? 'null (blocked by 0.47 guardrail)'}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'rag' && (
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between font-mono text-[11px]">
+                      <span className="text-cyan-300">{sandboxPresets.rag.endpoint}</span>
+                      <span className="text-slate-500">FAISS + Qwen2.5</span>
+                    </div>
+
+                    <div className="flex flex-wrap gap-1.5">
+                      {sandboxPresets.rag.queries.map((q, idx) => (
+                        <button
+                          key={q.id}
+                          onClick={() => setRagIdx(idx)}
+                          className={cn(
+                            'rounded-md px-2.5 py-1 font-mono text-[11px] transition',
+                            ragIdx === idx
+                              ? 'bg-white/15 text-white border border-white/25'
+                              : 'bg-white/[0.03] text-slate-400 border border-white/5 hover:text-slate-200'
+                          )}
+                        >
+                          Query #{idx + 1}
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="rounded-xl border border-white/10 bg-[#05070b] p-3.5 font-mono text-[11px] space-y-2">
+                      <p className="text-slate-500">Prompt:</p>
+                      <p className="text-white">{ragQuery.query}</p>
+                      <div className="flex items-center justify-between pt-1 text-slate-400">
+                        <span>FAISS Top-K: {ragQuery.retrievedChunks} chunks</span>
+                        <span className="text-cyan-300">
+                          Score: {ragQuery.topScore} • {ragQuery.latencyMs}ms
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="rounded-xl border border-cyan-500/25 bg-cyan-500/[0.07] p-3.5 text-xs leading-relaxed text-slate-200">
+                      <span className="block font-mono text-[10px] uppercase tracking-wider text-cyan-300 mb-1">
+                        Grounded Local Output (0% External Egress)
+                      </span>
+                      {ragQuery.response}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </motion.div>
         </div>
