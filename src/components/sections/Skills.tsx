@@ -3,125 +3,185 @@
 import { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import {
-  BarChart3,
+  Activity,
   BrainCircuit,
   Code2,
   Cpu,
   Database,
-  LineChart,
-  Sparkles,
-  Terminal,
-  Wrench,
+  Mic,
+  Server,
+  ShieldCheck,
 } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
-import { capabilities, techGroups } from '@/lib/portfolio-data';
+import { capabilities, skillCategories } from '@/lib/portfolio-data';
 import { cn } from '@/lib/utils';
 
-const capabilityIcons = [BrainCircuit, BarChart3, LineChart, Terminal];
+const capabilityIcons = [Activity, Mic, Database, ShieldCheck];
+
+const accentStyles = {
+  emerald: {
+    dot: 'bg-emerald-400',
+    border: 'border-emerald-500/20',
+    icon: 'text-emerald-400',
+  },
+  cyan: {
+    dot: 'bg-cyan-400',
+    border: 'border-cyan-500/20',
+    icon: 'text-cyan-400',
+  },
+  amber: {
+    dot: 'bg-amber-400',
+    border: 'border-amber-500/20',
+    icon: 'text-amber-400',
+  },
+} as const;
+
+const categoryIcons: Record<string, typeof Code2> = {
+  programming: Code2,
+  ml: BrainCircuit,
+  genai: Cpu,
+  backend: Server,
+  guardrails: ShieldCheck,
+};
 
 export default function Skills() {
-  const [activeTab, setActiveTab] = useState<string>('All');
+  const [activeCategory, setActiveCategory] = useState<string>('all');
   const shouldReduceMotion = useReducedMotion();
 
-  const filteredGroups =
-    activeTab === 'All'
-      ? techGroups
-      : techGroups.filter((g) => g.title.toLowerCase().includes(activeTab.toLowerCase()));
+  const visibleCategories =
+    activeCategory === 'all'
+      ? skillCategories
+      : skillCategories.filter((cat) => cat.id === activeCategory);
 
   return (
     <section id="skills" className="section-y relative">
       <div className="section-shell">
         <SectionHeading
-          eyebrow="Skills & Stack"
-          title="Analytical skills, Python expertise & Machine Learning workflows."
-          subtitle="Combining statistical analysis, exploratory data wrangling, predictive modeling, and efficient Python programming to uncover actionable insights."
+          index="02"
+          eyebrow="Technical Stack"
+          title="Core ML capabilities, evaluation harnesses & production tooling."
+          subtitle="Structured around statistical validation, low-latency Python inference microservices, vector retrieval, and deterministic safety guardrails."
         />
 
-        {/* Core Capabilities Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mb-12">
-          {capabilities.map((capability, index) => {
+        {/* 4 Core Engineering Pillars */}
+        <div className="mb-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {capabilities.map((cap, index) => {
             const Icon = capabilityIcons[index] ?? BrainCircuit;
-
             return (
               <motion.article
-                key={capability.title}
-                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                key={cap.title}
+                initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.45, delay: index * 0.08, ease: 'easeOut' }}
-                className="glass-card group p-6 flex flex-col justify-between hover:border-emerald-500/40"
+                transition={{ duration: 0.4, delay: index * 0.06 }}
+                className="glass-card group flex flex-col justify-between p-5"
               >
                 <div>
-                  <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all duration-300">
-                    <Icon className="h-6 w-6" />
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-500/25 bg-emerald-500/10 text-emerald-400 transition group-hover:scale-105">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <span className="font-mono text-[10px] font-medium text-slate-400">
+                      {cap.tag}
+                    </span>
                   </div>
-                  <h3 className="font-display text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
-                    {capability.title}
+
+                  <h3 className="mt-4 font-display text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">
+                    {cap.title}
                   </h3>
-                  <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-slate-400">
-                    {capability.description}
+                  <p className="mt-2 text-xs leading-relaxed text-slate-400 sm:text-sm">
+                    {cap.description}
                   </p>
+                </div>
+
+                <div className="mt-5 border-t border-white/10 pt-3 font-mono text-[11px] font-medium text-emerald-300">
+                  {cap.metric}
                 </div>
               </motion.article>
             );
           })}
         </div>
 
-        {/* Technologies Breakdown Box */}
-        <div className="glass-card p-6 sm:p-8 border-cyan-500/20 bg-slate-900/70">
-          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between border-b border-white/10 pb-6">
+        {/* Full CV Technical Matrix */}
+        <div className="panel-surface rounded-2xl p-5 sm:p-7">
+          <div className="flex flex-col gap-4 border-b border-white/10 pb-5 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400">
-                Technical Stack
+              <span className="font-mono text-[11px] uppercase tracking-wider text-cyan-300">
+                Verified Stack Matrix
               </span>
-              <h3 className="mt-1 font-display text-2xl font-bold text-white">
-                Technologies & Tools I Use Daily
+              <h3 className="mt-1 font-display text-xl font-bold text-white sm:text-2xl">
+                Languages, ML Libraries, APIs &amp; Guardrails
               </h3>
             </div>
 
-            {/* Filter Pills */}
-            <div className="flex flex-wrap gap-2">
-              {['All', 'Data Science', 'Analytics', 'Tools'].map((tab) => (
+            <div className="flex flex-wrap gap-1.5">
+              <button
+                onClick={() => setActiveCategory('all')}
+                className={cn(
+                  'rounded-lg px-3 py-1.5 font-mono text-[11px] font-medium transition',
+                  activeCategory === 'all'
+                    ? 'bg-emerald-500 text-slate-950 font-semibold'
+                    : 'border border-white/10 bg-white/[0.03] text-slate-400 hover:text-white'
+                )}
+              >
+                All Domains (5)
+              </button>
+              {skillCategories.map((cat) => (
                 <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
                   className={cn(
-                    'rounded-xl px-3.5 py-1.5 text-xs font-semibold transition-all duration-200',
-                    activeTab === tab
-                      ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/20'
-                      : 'border border-white/10 bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white'
+                    'rounded-lg px-3 py-1.5 font-mono text-[11px] font-medium transition',
+                    activeCategory === cat.id
+                      ? 'bg-emerald-500 text-slate-950 font-semibold'
+                      : 'border border-white/10 bg-white/[0.03] text-slate-400 hover:text-white'
                   )}
                 >
-                  {tab}
+                  {cat.title.split('&')[0].trim()}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Grouped Skills Display */}
-          <div className="mt-8 grid gap-8 md:grid-cols-3">
-            {filteredGroups.map((group) => (
-              <div key={group.title} className="space-y-4">
-                <div className="flex items-center gap-2 text-sm font-bold text-slate-200">
-                  {group.title.includes('Data Science') && <BrainCircuit className="h-4 w-4 text-emerald-400" />}
-                  {group.title.includes('Analytics') && <BarChart3 className="h-4 w-4 text-cyan-400" />}
-                  {group.title.includes('Tools') && <Terminal className="h-4 w-4 text-violet-400" />}
-                  <span>{group.title}</span>
-                </div>
+          <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {visibleCategories.map((group) => {
+              const Icon = categoryIcons[group.id] ?? Code2;
+              const style = accentStyles[group.accent];
 
-                <div className="flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <span
-                      key={item}
-                      className="inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-slate-950/60 px-3 py-1.5 text-xs font-medium text-slate-200 backdrop-blur-sm transition-all duration-200 hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-emerald-300 hover:scale-105"
-                    >
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                      {item}
-                    </span>
-                  ))}
+              return (
+                <div
+                  key={group.id}
+                  className={cn(
+                    'rounded-xl border bg-[#05070b]/70 p-4 sm:p-5',
+                    style.border
+                  )}
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <h4 className="font-display text-base font-bold text-white">
+                        {group.title}
+                      </h4>
+                      <p className="mt-0.5 font-mono text-[11px] text-slate-500">
+                        {group.subtitle}
+                      </p>
+                    </div>
+                    <Icon className={cn('h-4 w-4 shrink-0 mt-1', style.icon)} />
+                  </div>
+
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {group.items.map((item) => (
+                      <span
+                        key={item}
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1 font-mono text-[11px] text-slate-200 transition hover:border-emerald-500/35 hover:text-white"
+                      >
+                        <span className={cn('h-1.5 w-1.5 rounded-full', style.dot)} />
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
