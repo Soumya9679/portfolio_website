@@ -18,15 +18,13 @@ export interface Profile {
   leetcodeHref: string;
 }
 
-export const profile: Profile & { focus: string } = {
+export const profile: Profile = {
   name: 'Soumyadip Maity',
   shortName: 'SM',
   role: 'AI/ML Engineer & Data Scientist',
   headline: 'Engineering production ML pipelines, multilingual speech AI, and privacy-first RAG systems.',
   summary:
     'B.Tech IT undergraduate (8.79 CGPA) specializing in Data Science, Machine Learning, and AI Engineering. I build leakage-free predictive models, guardrail-enforced NLP systems, and low-latency FastAPI microservices.',
-  focus:
-    'B.Tech IT undergraduate (8.79 CGPA) specializing in Data Science, Machine Learning, and AI Engineering. Building leakage-free predictive models, guardrail-enforced NLP systems, and low-latency FastAPI microservices.',
   location: 'Kolkata, West Bengal, India',
   email: 'maitysoumyadip108@gmail.com',
   phone: '+91 7797923011',
@@ -271,10 +269,6 @@ export interface Project {
   image?: string;
   visualType: 'difficulty' | 'voice' | 'rag' | 'summarizer' | 'finance' | 'placement' | 'screenshot';
   endpoint?: string;
-  // Temporary compatibility fields removed once Projects component is upgraded
-  href?: string;
-  action?: string;
-  highlight?: string;
 }
 
 export const projects: Project[] = [
@@ -662,18 +656,6 @@ export const educationItems = [
     highlights: ['Science & Mathematics foundation'],
   },
 ] as const;
-
-export const heroStats = heroMetrics.slice(0, 3).map((m) => ({
-  value: m.value,
-  label: m.label,
-}));
-
-export const principles = engineeringPrinciples.map((p) => p.detail);
-
-export const techGroups = skillCategories.slice(0, 3).map((c) => ({
-  title: c.title,
-  items: c.items,
-}));
 
 export const sandboxPresets = {
   difficulty: {
