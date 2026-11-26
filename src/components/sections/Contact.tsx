@@ -7,16 +7,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import {
   ArrowUpRight,
+  Check,
   CheckCircle2,
   Code2,
   Copy,
-  Check,
   Github,
   Linkedin,
   Loader2,
   Mail,
+  MapPin,
   Send,
-  Sparkles,
+  Terminal,
   XCircle,
 } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -38,8 +39,8 @@ const iconMap = {
   leetcode: Code2,
 } as const;
 
-const inputBaseClass =
-  'w-full rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3.5 text-sm text-white placeholder:text-slate-500 backdrop-blur-md transition-all duration-200 focus:border-emerald-500/50 focus:bg-slate-900/80 focus:outline-none focus:ring-2 focus:ring-emerald-500/20';
+const inputClass =
+  'w-full rounded-xl border border-white/10 bg-[#05070b]/90 px-4 py-3 text-sm text-white placeholder:text-slate-500 transition focus:border-emerald-500/50 focus:outline-none focus:ring-2 focus:ring-emerald-500/20';
 
 export default function Contact() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -58,7 +59,7 @@ export default function Contact() {
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(profile.email);
     setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    setTimeout(() => setCopied(false), 2200);
   };
 
   const onSubmit = async (data: ContactFormData) => {
@@ -85,67 +86,73 @@ export default function Contact() {
   return (
     <section id="contact" className="section-y relative">
       <div className="section-shell">
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
-          {/* Left Column: Direct Contact Info & Links */}
+        <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
+          {/* Left: Direct Engineering Channels */}
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
+            transition={{ duration: 0.45 }}
             className="lg:col-span-5"
           >
             <SectionHeading
-              eyebrow="Get In Touch"
-              title="Let's build something remarkable together."
-              subtitle="Have a project concept, question, or engineering role? Send a message or connect directly."
+              index="05"
+              eyebrow="Direct Contact"
+              title="Open to AI/ML roles, research collaborations & systems builds."
+              subtitle="Reach out directly via email or send a structured inquiry using the form."
             />
 
-            <div className="glass-card p-6 sm:p-8 border-emerald-500/20 bg-slate-900/80">
-              <div className="flex items-center justify-between border-b border-white/10 pb-5">
-                <div>
-                  <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            <div className="panel-surface rounded-2xl p-5 sm:p-6">
+              <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-4">
+                <div className="min-w-0">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-slate-500">
                     Direct Email
-                  </p>
-                  <p className="mt-1 font-mono text-lg font-bold text-white">
+                  </span>
+                  <p className="mt-1 truncate font-mono text-sm font-semibold text-emerald-300 sm:text-base">
                     {profile.email}
                   </p>
                 </div>
 
                 <button
                   onClick={handleCopyEmail}
-                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-emerald-400 transition"
-                  title="Copy email to clipboard"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-300 transition hover:border-emerald-500/40 hover:text-emerald-300"
+                  title="Copy email"
+                  aria-label="Copy email"
                 >
-                  {copied ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
+                  {copied ? (
+                    <Check className="h-4 w-4 text-emerald-400" />
+                  ) : (
+                    <Copy className="h-4 w-4" />
+                  )}
                 </button>
               </div>
 
-              {/* Social Channels List */}
-              <div className="mt-6 space-y-3">
-                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                  Social Channels
-                </p>
+              <div className="mt-4 flex items-center gap-2 border-b border-white/10 pb-4 font-mono text-xs text-slate-400">
+                <MapPin className="h-3.5 w-3.5 text-emerald-400" />
+                <span>{profile.location}</span>
+              </div>
+
+              <div className="mt-5 space-y-2.5">
                 {socialLinks.map(({ href, label, username, kind }) => {
                   const Icon = iconMap[kind];
-
                   return (
                     <a
                       key={label}
                       href={href}
                       target={href.startsWith('mailto') ? undefined : '_blank'}
                       rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                      className="group flex items-center gap-3.5 rounded-xl border border-white/10 bg-slate-950/40 p-3 text-slate-300 transition-all duration-200 hover:border-emerald-500/30 hover:bg-emerald-500/10 hover:text-white"
+                      className="group flex items-center gap-3 rounded-xl border border-white/10 bg-[#05070b]/70 p-3 transition hover:border-emerald-500/35 hover:bg-white/[0.03]"
                     >
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 group-hover:scale-105 transition-transform">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-emerald-500/20 bg-emerald-500/10 text-emerald-400">
                         <Icon className="h-4 w-4" />
                       </span>
                       <div className="min-w-0 flex-1">
                         <span className="block text-xs font-semibold text-white">{label}</span>
-                        <span className="block truncate text-[11px] text-slate-400">
+                        <span className="block truncate font-mono text-[11px] text-slate-400">
                           {username}
                         </span>
                       </div>
-                      <ArrowUpRight className="h-4 w-4 text-slate-500 group-hover:text-emerald-400 transition-colors" />
+                      <ArrowUpRight className="h-4 w-4 text-slate-500 transition group-hover:text-emerald-400" />
                     </a>
                   );
                 })}
@@ -153,88 +160,78 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Right Column: Glassmorphic Contact Form */}
+          {/* Right: Contact Form */}
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.5, delay: 0.08, ease: 'easeOut' }}
-            className="glass-card p-6 sm:p-8 lg:col-span-7"
+            transition={{ duration: 0.45, delay: 0.06 }}
+            className="panel-surface rounded-2xl p-6 sm:p-8 lg:col-span-7"
           >
-            <div className="flex items-center gap-2 mb-2">
-              <Sparkles className="h-4 w-4 text-emerald-400" />
-              <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
-                Send a Message
-              </span>
+            <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-emerald-400">
+              <Terminal className="h-3.5 w-3.5" />
+              <span>Dispatch Message</span>
             </div>
 
-            <h3 className="font-display text-2xl font-bold text-white">
-              Tell me about your project or inquiry
+            <h3 className="mt-2 font-display text-2xl font-bold text-white">
+              Start a conversation
             </h3>
-            <p className="mt-2 text-xs sm:text-sm text-slate-400">
-              Fill out the form below. Messages are delivered directly to my inbox.
+            <p className="mt-1.5 text-xs text-slate-400 sm:text-sm">
+              Share role details, ML/AI project requirements, or collaboration ideas.
             </p>
 
             <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-4" noValidate>
-              <div>
-                <label htmlFor="name" className="mb-1.5 block text-xs font-semibold text-slate-300">
-                  Your Name
-                </label>
-                <input
-                  id="name"
-                  {...register('name')}
-                  placeholder="John Doe"
-                  autoComplete="name"
-                  className={cn(
-                    inputBaseClass,
-                    errors.name && 'border-red-500/50 focus:ring-red-500/20'
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="name" className="mb-1.5 block font-mono text-[11px] text-slate-300">
+                    NAME
+                  </label>
+                  <input
+                    id="name"
+                    {...register('name')}
+                    placeholder="Your name"
+                    autoComplete="name"
+                    className={cn(inputClass, errors.name && 'border-red-500/50')}
+                  />
+                  {errors.name && (
+                    <p className="mt-1.5 flex items-center gap-1 text-xs text-red-400">
+                      <XCircle className="h-3.5 w-3.5" />
+                      {errors.name.message}
+                    </p>
                   )}
-                />
-                {errors.name && (
-                  <p className="mt-1.5 flex items-center gap-1 text-xs text-red-400">
-                    <XCircle className="h-3.5 w-3.5" />
-                    {errors.name.message}
-                  </p>
-                )}
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="mb-1.5 block font-mono text-[11px] text-slate-300">
+                    EMAIL
+                  </label>
+                  <input
+                    id="email"
+                    {...register('email')}
+                    type="email"
+                    placeholder="you@company.com"
+                    autoComplete="email"
+                    className={cn(inputClass, errors.email && 'border-red-500/50')}
+                  />
+                  {errors.email && (
+                    <p className="mt-1.5 flex items-center gap-1 text-xs text-red-400">
+                      <XCircle className="h-3.5 w-3.5" />
+                      {errors.email.message}
+                    </p>
+                  )}
+                </div>
               </div>
 
               <div>
-                <label htmlFor="email" className="mb-1.5 block text-xs font-semibold text-slate-300">
-                  Email Address
-                </label>
-                <input
-                  id="email"
-                  {...register('email')}
-                  type="email"
-                  placeholder="you@example.com"
-                  autoComplete="email"
-                  className={cn(
-                    inputBaseClass,
-                    errors.email && 'border-red-500/50 focus:ring-red-500/20'
-                  )}
-                />
-                {errors.email && (
-                  <p className="mt-1.5 flex items-center gap-1 text-xs text-red-400">
-                    <XCircle className="h-3.5 w-3.5" />
-                    {errors.email.message}
-                  </p>
-                )}
-              </div>
-
-              <div>
-                <label htmlFor="message" className="mb-1.5 block text-xs font-semibold text-slate-300">
-                  Message
+                <label htmlFor="message" className="mb-1.5 block font-mono text-[11px] text-slate-300">
+                  MESSAGE
                 </label>
                 <textarea
                   id="message"
                   {...register('message')}
-                  placeholder="Describe your project, ideas, or questions..."
+                  placeholder="Tell me about the role, system problem, or timeline..."
                   rows={5}
-                  className={cn(
-                    inputBaseClass,
-                    'resize-none',
-                    errors.message && 'border-red-500/50 focus:ring-red-500/20'
-                  )}
+                  className={cn(inputClass, 'resize-none', errors.message && 'border-red-500/50')}
                 />
                 {errors.message && (
                   <p className="mt-1.5 flex items-center gap-1 text-xs text-red-400">
@@ -247,12 +244,12 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="button-primary w-full py-4 text-sm font-bold disabled:opacity-60"
+                className="button-primary w-full py-3.5 disabled:opacity-60"
               >
                 {isSubmitting ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin" />
-                    <span>Sending Message...</span>
+                    <span>Sending...</span>
                   </>
                 ) : (
                   <>
@@ -262,28 +259,18 @@ export default function Contact() {
                 )}
               </button>
 
-              {/* Success Notification */}
               {submitStatus === 'success' && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/15 px-4 py-3 text-xs sm:text-sm font-medium text-emerald-300"
-                >
+                <div className="flex items-center gap-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-xs text-emerald-300 sm:text-sm">
                   <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-400" />
-                  <span>Your message was sent successfully! I will get back to you soon.</span>
-                </motion.div>
+                  <span>Message delivered successfully. I will respond shortly.</span>
+                </div>
               )}
 
-              {/* Error Notification */}
               {submitStatus === 'error' && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-2.5 rounded-xl border border-red-500/30 bg-red-500/15 px-4 py-3 text-xs sm:text-sm font-medium text-red-300"
-                >
+                <div className="flex items-center gap-2.5 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-xs text-red-300 sm:text-sm">
                   <XCircle className="h-4 w-4 shrink-0 text-red-400" />
-                  <span>Failed to send message. Please try again or reach out via direct email.</span>
-                </motion.div>
+                  <span>Delivery failed. Please email {profile.email} directly.</span>
+                </div>
               )}
             </form>
           </motion.div>
