@@ -3,41 +3,46 @@
 @tailwind utilities;
 
 :root {
-  --bg-dark: #05070d;
-  --bg-surface: #0b0f19;
-  --card-bg: rgba(13, 19, 34, 0.65);
-  --card-border: rgba(255, 255, 255, 0.08);
-  --card-border-hover: rgba(16, 185, 129, 0.35);
+  --bg-obsidian: #05070b;
+  --bg-panel: #0a0f18;
+  --bg-elevated: #0f1623;
+  --border-hairline: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
+  --border-accent: rgba(16, 185, 129, 0.35);
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
   --accent-emerald: #10b981;
-  --accent-cyan: #06b6d4;
-  --accent-violet: #8b5cf6;
+  --accent-cyan: #22d3ee;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 5.5rem;
     color-scheme: dark;
   }
 
   body {
-    @apply antialiased selection:bg-emerald-500/20 selection:text-emerald-300;
-    background-color: var(--bg-dark);
+    @apply antialiased selection:bg-emerald-500/25 selection:text-emerald-200;
+    background-color: var(--bg-obsidian);
     color: var(--text-primary);
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.02em;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: -0.025em;
   }
 
   :where(a, button, input, textarea, select):focus-visible {
     outline: 2px solid var(--accent-emerald);
-    outline-offset: 3px;
+    outline-offset: 2px;
   }
 }
 
@@ -47,46 +52,48 @@
   }
 
   .section-y {
-    padding-block: clamp(4.5rem, 8vw, 7.5rem);
+    padding-block: clamp(4.5rem, 8vw, 7rem);
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-emerald-400 via-teal-200 to-cyan-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-emerald-400 via-teal-200 to-cyan-300 bg-clip-text text-transparent;
   }
 
-  .gradient-text-alt {
-    @apply bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent;
+  .panel-surface {
+    background: linear-gradient(180deg, rgba(15, 22, 35, 0.85) 0%, rgba(10, 15, 24, 0.92) 100%);
+    border: 1px solid var(--border-hairline);
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset, 0 20px 50px -15px rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
 
   .glass-card {
-    background: rgba(13, 19, 34, 0.6);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--card-border);
-    border-radius: 1rem;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    @apply panel-surface rounded-2xl transition-all duration-300;
   }
 
   .glass-card:hover {
-    border-color: var(--card-border-hover);
-    box-shadow: 0 12px 40px -10px rgba(16, 185, 129, 0.15);
+    border-color: var(--border-accent);
+    box-shadow: 0 1px 0 0 rgba(16, 185, 129, 0.12) inset, 0 24px 60px -15px rgba(16, 185, 129, 0.12);
   }
 
   .glass-pill {
-    @apply inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3.5 py-1.5 text-xs font-semibold text-emerald-300 backdrop-blur-md;
+    @apply inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1 font-mono text-[11px] font-medium tracking-wide text-emerald-300;
   }
 
   .button-primary {
-    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-emerald-500/40 hover:scale-[1.02] active:scale-[0.98];
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-emerald-500/20 transition-all duration-200 hover:bg-emerald-400 hover:shadow-emerald-400/30 active:scale-[0.98];
   }
 
   .button-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 text-sm font-semibold text-slate-200 backdrop-blur-md transition-all duration-300 hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-white hover:scale-[1.02] active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-slate-200 backdrop-blur-md transition-all duration-200 hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:text-white active:scale-[0.98];
   }
 
   .chip {
-    @apply inline-flex items-center rounded-lg border border-white/10 bg-slate-900/60 px-3 py-1 text-xs font-medium text-slate-300 backdrop-blur-sm transition hover:border-emerald-500/30 hover:text-emerald-300;
+    @apply inline-flex items-center rounded-md border border-white/10 bg-white/[0.03] px-2.5 py-1 font-mono text-[11px] font-medium text-slate-300 transition hover:border-emerald-500/30 hover:text-emerald-300;
+  }
+
+  .kbd-cap {
+    @apply inline-flex items-center justify-center rounded border border-white/15 bg-white/[0.06] px-1.5 py-0.5 font-mono text-[10px] font-medium text-slate-300;
   }
 }
 
@@ -96,21 +103,33 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #05070d;
+  background: #05070b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.14);
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(16, 185, 129, 0.5);
+  background: rgba(16, 185, 129, 0.45);
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.15) #05070d;
+  scrollbar-color: rgba(255, 255, 255, 0.14) #05070b;
+}
+
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

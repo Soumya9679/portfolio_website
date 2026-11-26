@@ -93,7 +93,7 @@ export default function Projects() {
                   )}
                 >
                   <Image
-                    src={project.image}
+                    src={project.image ?? '/images/rag-chatbot.png'}
                     alt={`${project.title} project preview`}
                     fill
                     sizes={
@@ -148,7 +148,7 @@ export default function Projects() {
 
                     {/* Description */}
                     <p className="mt-3 text-sm leading-relaxed text-slate-300">
-                      {project.description}
+                      {project.summary}
                     </p>
 
                     {/* Highlight Box */}
@@ -231,7 +231,7 @@ export default function Projects() {
 
               <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10 my-5 bg-slate-950">
                 <Image
-                  src={activeModalProject.image}
+                  src={activeModalProject.image ?? '/images/rag-chatbot.png'}
                   alt={activeModalProject.title}
                   fill
                   className="object-cover object-top"
@@ -239,7 +239,7 @@ export default function Projects() {
               </div>
 
               <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                {activeModalProject.description}
+                {activeModalProject.summary}
               </p>
 
               <div className="my-4 border-l-2 border-emerald-400 bg-emerald-500/10 p-3.5 rounded-r-xl text-sm text-emerald-200">
