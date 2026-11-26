@@ -7,37 +7,31 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['var(--font-space)', 'var(--font-inter)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-newsreader)', 'Georgia', 'serif'],
+        display: ['var(--font-inter)', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['var(--font-jetbrains)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       colors: {
-        obsidian: {
-          950: '#05070b',
-          900: '#090d14',
-          850: '#0d131d',
-          800: '#121a27',
+        paper: {
+          50: '#FAF9F6',
+          100: '#F3F1EC',
+          200: '#E6E3DC',
         },
-        signal: {
-          emerald: '#10b981',
-          mint: '#34d399',
-          cyan: '#22d3ee',
-          amber: '#f59e0b',
+        ink: {
+          950: '#0C0E12',
+          900: '#111318',
+          700: '#334155',
+          500: '#64748B',
         },
-      },
-      animation: {
-        'pulse-slow': 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        shimmer: 'shimmer 2.5s linear infinite',
-      },
-      keyframes: {
-        shimmer: {
-          '0%': { transform: 'translateX(-100%)' },
-          '100%': { transform: 'translateX(100%)' },
+        cobalt: {
+          500: '#2563EB',
+          600: '#1D4ED8',
+          700: '#1E40AF',
         },
       },
       boxShadow: {
-        panel: '0 1px 0 0 rgba(255, 255, 255, 0.05) inset, 0 20px 50px -12px rgba(0, 0, 0, 0.6)',
-        'glow-emerald': '0 0 40px -12px rgba(16, 185, 129, 0.3)',
-        'glow-cyan': '0 0 40px -12px rgba(34, 211, 238, 0.25)',
+        editorial: '0 1px 2px rgba(17, 19, 24, 0.04), 0 12px 32px -12px rgba(17, 19, 24, 0.08)',
+        'editorial-lg': '0 4px 12px rgba(17, 19, 24, 0.05), 0 24px 48px -16px rgba(17, 19, 24, 0.14)',
       },
     },
   },

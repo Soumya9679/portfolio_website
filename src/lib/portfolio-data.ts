@@ -21,10 +21,10 @@ export interface Profile {
 export const profile: Profile = {
   name: 'Soumyadip Maity',
   shortName: 'SM',
-  role: 'AI/ML Engineer & Data Scientist',
-  headline: 'Engineering production ML pipelines, multilingual speech AI, and privacy-first RAG systems.',
+  role: 'Data Science • Machine Learning • AI Engineering',
+  headline: 'Building leakage-free ML models, multilingual speech AI, and privacy-first RAG systems.',
   summary:
-    'B.Tech IT undergraduate (8.79 CGPA) specializing in Data Science, Machine Learning, and AI Engineering. I build leakage-free predictive models, guardrail-enforced NLP systems, and low-latency FastAPI microservices.',
+    'B.Tech IT undergraduate (8.79 CGPA) specializing in Data Science, Machine Learning, and AI Engineering. Experienced in Python ML pipelines, NLP, FAISS, and RAG applications, with expertise in rigorous model evaluation and FastAPI deployment.',
   location: 'Kolkata, West Bengal, India',
   email: 'maitysoumyadip108@gmail.com',
   phone: '+91 7797923011',
@@ -39,10 +39,10 @@ export const profile: Profile = {
 
 export const navItems = [
   { label: 'Overview', href: '#home' },
-  { label: 'Systems', href: '#projects' },
-  { label: 'Stack', href: '#skills' },
-  { label: 'Experience', href: '#leadership' },
-  { label: 'About', href: '#about' },
+  { label: 'ML Systems', href: '#projects' },
+  { label: 'Capabilities', href: '#skills' },
+  { label: 'Leadership', href: '#leadership' },
+  { label: 'Philosophy', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ] as const;
 
@@ -82,7 +82,7 @@ export const heroMetrics = [
   {
     value: '96.23%',
     label: 'Voice Intent Acc',
-    detail: '0.47 Cosine Safety Gate',
+    detail: '0.47 Cosine Safety Threshold',
   },
   {
     value: '8.79',
@@ -90,9 +90,9 @@ export const heroMetrics = [
     detail: 'STCET (MAKAUT) • 2024–2028',
   },
   {
-    value: '3× Lead',
-    label: 'Hackathon Finalist',
-    detail: 'SIH 25/26 • GDGoC • SREY 2k26',
+    value: '6',
+    label: 'ML & AI Systems',
+    detail: 'FastAPI • FAISS • NLP • Eval',
   },
 ] as const;
 
@@ -103,50 +103,50 @@ export const engineeringPrinciples = [
       'Enforce subject-grouped splits (5-fold GroupKFold) and strict train-only prototype fitting so offline accuracy reflects true unseen generalization.',
   },
   {
-    title: 'Guardrail-First AI Inference',
+    title: 'Guardrail-First Inference',
     detail:
-      'Every generative or speech model sits behind deterministic boundaries — cosine rejection thresholds (0.47), allow-listed action registries, and Pydantic contracts.',
+      'Wrap predictive and speech models behind deterministic boundaries — cosine rejection thresholds (0.47), allow-listed action registries, and Pydantic schemas.',
   },
   {
     title: 'Low-Latency FastAPI Serving',
     detail:
-      'Decouple model weights, feature builders, and REST/streaming endpoints into clean, containerized Python microservices ready for full-stack integration.',
+      'Decouple serialized models, temporal feature builders, and REST/streaming endpoints into clean, containerized Python microservices.',
   },
   {
-    title: 'Multi-Dimensional Evaluation',
+    title: 'Multi-Metric NLP Evaluation',
     detail:
-      'Benchmark NLP outputs beyond surface overlap using lexical (ROUGE) and neural semantic metrics (BERTScore, BLEURT) in reproducible notebooks.',
+      'Measure generation and summarization fidelity beyond n-gram overlap using lexical (ROUGE) and learned neural metrics (BERTScore, BLEURT).',
   },
 ] as const;
 
 export const capabilities = [
   {
-    title: 'Predictive ML & Temporal Modeling',
+    title: 'Predictive ML & Temporal Features',
     description:
-      'Domain feature engineering over behavioral telemetry, Random Forest & Isolation Forest modeling, and GroupKFold subject-safe cross-validation.',
+      'Domain feature engineering on behavioral telemetry, Random Forest & Isolation Forest modeling, and GroupKFold subject-safe validation.',
     metric: '89.1% Holdout • 0.109 MAE',
     tag: 'scikit-learn / FastAPI',
   },
   {
     title: 'Speech & Multilingual NLP',
     description:
-      'End-to-end ASR pipelines (SraVaani) paired with multilingual Sentence Transformer prototypes, cosine similarity gating, and strict intent allow-lists.',
-    metric: '15 Intents • 0.47 Gate',
+      'End-to-end ASR pipelines (SraVaani) paired with multilingual Sentence Transformer prototypes, cosine similarity gating, and intent allow-lists.',
+    metric: '15 Intents • ≥ 0.47 Gate',
     tag: 'SraVaani / MiniLM',
   },
   {
-    title: 'Privacy-First RAG & Agents',
+    title: 'Privacy-First RAG Pipelines',
     description:
-      'Local & serverless RAG pipelines combining semantic chunking, FAISS/Pinecone vector indexing, LangChain LCEL, and Ollama Qwen2.5 or Gemini inference.',
-    metric: 'Streaming FAISS + LLM',
+      'Local vector retrieval combining recursive document chunking, Hugging Face Sentence Transformers, FAISS indexing, and local Ollama Qwen2.5 inference.',
+    metric: 'FAISS + Local Qwen2.5',
     tag: 'LangChain / Ollama',
   },
   {
-    title: 'Evaluation & Production APIs',
+    title: 'Model Evaluation & Deployment',
     description:
-      'Rigorous model fidelity evaluation with ROUGE, BERTScore, and BLEURT, shipped via typed FastAPI microservices, Docker, and Next.js frontends.',
+      'Benchmarking NLP coherence with ROUGE, BERTScore, and BLEURT, and deploying validated REST inference APIs with Docker and Render.',
     metric: 'ROUGE / BERTScore / BLEURT',
-    tag: 'Docker / Next.js / Render',
+    tag: 'Docker / FastAPI / Render',
   },
 ] as const;
 
@@ -154,7 +154,6 @@ export interface SkillCategory {
   id: string;
   title: string;
   subtitle: string;
-  accent: 'emerald' | 'cyan' | 'amber';
   items: string[];
 }
 
@@ -162,15 +161,13 @@ export const skillCategories: SkillCategory[] = [
   {
     id: 'programming',
     title: 'Programming & Databases',
-    subtitle: 'Core systems & query languages',
-    accent: 'emerald',
-    items: ['Python', 'C', 'SQL', 'TypeScript', 'JavaScript'],
+    subtitle: 'Core languages & relational querying',
+    items: ['Python', 'C', 'SQL'],
   },
   {
     id: 'ml',
     title: 'Data Science & ML',
     subtitle: 'Modeling, telemetry & validation',
-    accent: 'cyan',
     items: [
       'NumPy',
       'Pandas',
@@ -185,13 +182,11 @@ export const skillCategories: SkillCategory[] = [
   {
     id: 'genai',
     title: 'NLP & Generative AI',
-    subtitle: 'Embeddings, retrieval & LLMs',
-    accent: 'emerald',
+    subtitle: 'Retrieval, embeddings & summarization',
     items: [
       'Retrieval-Augmented Generation (RAG)',
       'LangChain',
       'FAISS',
-      'Pinecone',
       'Sentence Transformers',
       'Ollama (Qwen2.5)',
       'Text Summarization',
@@ -201,43 +196,37 @@ export const skillCategories: SkillCategory[] = [
   {
     id: 'backend',
     title: 'Backend, APIs & DevOps',
-    subtitle: 'Microservices & full-stack shipping',
-    accent: 'cyan',
+    subtitle: 'Inference serving & reproducibility',
     items: [
       'FastAPI',
       'REST APIs',
-      'Pydantic',
       'Model Inference Endpoints',
-      'Next.js 15 / 16',
-      'React 19',
+      'Pydantic',
       'Docker',
       'Git & GitHub',
-      'Render & Vercel',
+      'Render',
       'Google Colab',
     ],
   },
   {
     id: 'guardrails',
     title: 'Evaluation & Guardrails',
-    subtitle: 'Fidelity metrics & safety gates',
-    accent: 'amber',
+    subtitle: 'Fidelity metrics & production safety',
     items: [
       'ROUGE',
       'BERTScore',
       'BLEURT',
       'Cosine Similarity Thresholding',
       'Allow-List Intent Guardrails',
-      'Subject-Leakage Prevention',
     ],
   },
 ];
 
 export type ProjectCategory =
   | 'All'
-  | 'ML & FastAPI'
+  | 'Machine Learning'
   | 'NLP & Speech AI'
-  | 'RAG & GenAI'
-  | 'Full-Stack AI';
+  | 'RAG & GenAI';
 
 export interface ProjectMetric {
   label: string;
@@ -255,7 +244,7 @@ export interface Project {
   title: string;
   subtitle: string;
   category: Exclude<ProjectCategory, 'All'>;
-  tier: 'flagship' | 'product';
+  tier: 'cv-core' | 'applied-ml';
   year: string;
   context: string;
   summary: string;
@@ -274,32 +263,32 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 'adaptive-difficulty',
-    title: 'Adaptive Cognitive Difficulty Predictor',
-    subtitle: 'Real-Time Behavioral ML Microservice (v2.0)',
-    category: 'ML & FastAPI',
-    tier: 'flagship',
+    title: 'Adaptive Cognitive Difficulty Prediction',
+    subtitle: 'Behavioral Telemetry Random Forest + FastAPI Microservice',
+    category: 'Machine Learning',
+    tier: 'cv-core',
     year: '2026',
     context: 'Smart India Hackathon (SIH26003) • Team HexaCore',
     summary:
-      'Random Forest inference microservice that dynamically calibrates cognitive game difficulty (levels 1–5) in real time from multi-session player behavioral telemetry.',
+      'Trained a Random Forest classifier on multi-session user behavioral logs to dynamically personalize cognitive difficulty levels (1–5) in real time.',
     problem:
-      'Static difficulty curves frustrate impaired users or bore high performers, while naive random splits leak subject-specific patterns across train and test folds.',
+      'Static difficulty progressions degrade user engagement, while naive random train/test splits leak subject-specific behavioral signatures across folds.',
     highlights: [
-      'Engineered 12 temporal behavioral features spanning accuracy, response latency, hint usage, rolling performance trends, and consecutive success streaks.',
+      'Engineered 12 domain-specific temporal features across accuracy, response latency, hint usage, rolling performance trends, and consecutive success streaks.',
       'Achieved 89.1% patient-level holdout accuracy, 0.109 MAE, and 88.24% mean accuracy across 5-fold GroupKFold cross-validation, eliminating subject-level data leakage.',
-      'Exposed predictions with calibrated adaptive thresholds (decrease < 0.549, increase ≥ 0.632) via a low-latency FastAPI endpoint clamped safely to [1, 5].',
+      'Exposed real-time predictions with calibrated adaptive bands (decrease < 0.549, increase ≥ 0.632) via a low-latency Python FastAPI microservice.',
     ],
     metrics: [
       { label: 'Holdout Acc', value: '89.1%' },
       { label: '5-Fold Group CV', value: '88.24%' },
       { label: 'MAE', value: '0.109' },
-      { label: 'Target Scale', value: '1 – 5' },
+      { label: 'Levels', value: '1 – 5' },
     ],
     architecture: [
-      { stage: '01 Telemetry Ingest', tech: 'Pydantic Schemas', detail: '12 session & rolling features validated on POST /predict' },
-      { stage: '02 Temporal Features', tech: 'Pandas / NumPy', detail: 'Recent accuracy, latency trends & consecutive streaks' },
-      { stage: '03 Inference Engine', tech: 'Random Forest v2.0', detail: 'GroupKFold-validated model with confidence scoring' },
-      { stage: '04 Safe Output', tech: 'FastAPI Microservice', detail: 'Difficulty clamped [1, 5] + adaptive band thresholds' },
+      { stage: '01 Telemetry Ingest', tech: 'Pydantic Schemas', detail: '12 session & rolling features validated at POST /predict' },
+      { stage: '02 Temporal Features', tech: 'Pandas / NumPy', detail: 'Rolling accuracy, latency trend & consecutive success streaks' },
+      { stage: '03 Model Serving', tech: 'Random Forest v2.0', detail: 'GroupKFold-validated classifier with confidence estimation' },
+      { stage: '04 Safe Clamping', tech: 'FastAPI Endpoint', detail: 'Clamps recommended level to [1, 5] within adaptive bands' },
     ],
     tags: ['Python', 'Random Forest', 'GroupKFold', 'scikit-learn', 'FastAPI', 'Pydantic'],
     githubHref: 'https://github.com/Soumya9679/adaptive-difficulty-predictor',
@@ -308,20 +297,20 @@ export const projects: Project[] = [
   },
   {
     id: 'voice-assistant',
-    title: 'Multilingual Voice Intent Classification',
-    subtitle: 'ASR + Dense Embedding Routing + Allow-List Guardrails',
+    title: 'Multilingual Voice Intent Classification System',
+    subtitle: 'SraVaani ASR + Sentence Transformer Prototypes + Safety Guardrails',
     category: 'NLP & Speech AI',
-    tier: 'flagship',
+    tier: 'cv-core',
     year: '2026',
     context: 'Smart India Hackathon (SIH26003) • Team HexaCore',
     summary:
-      'End-to-end multilingual speech-to-intent-to-action pipeline combining SraVaani ASR with MiniLM semantic prototype routing and deterministic action allow-listing.',
+      'End-to-end multilingual voice-processing pipeline integrating SraVaani ASR with dense MiniLM embedding intent routing and deterministic action allow-listing.',
     problem:
-      'Noisy multilingual voice transcripts frequently trigger unintended UI actions when classifiers lack out-of-distribution rejection or execute raw model predictions.',
+      'Noisy multilingual speech transcripts can trigger unintended application actions if classifiers lack out-of-distribution rejection or execute raw predictions.',
     highlights: [
-      'Integrated ARTPARK-IISc/SraVaani-1.0 ASR (CUDA + Gradio) with CPU-efficient paraphrase-multilingual-MiniLM-L12-v2 semantic prototype matching.',
-      'Mapped noisy multilingual utterances across 15 intents (325-sample dataset) achieving 96.23% test accuracy (95.92% val / 93.88% holdout split, 0.9556 Macro F1).',
-      'Engineered a 0.47 cosine-similarity rejection threshold paired with an allow-listed action registry so out-of-scope triggers safely resolve to UNKNOWN.',
+      'Architected an end-to-end pipeline integrating ARTPARK-IISc/SraVaani-1.0 ASR (CUDA + Gradio) with paraphrase-multilingual-MiniLM-L12-v2 dense prototype matching.',
+      'Mapped noisy multilingual voice transcripts across 15 intents (325-sample dataset) with 96.23% test accuracy (95.92% val / 93.88% holdout split, 0.9556 Macro F1).',
+      'Engineered a 0.47 cosine-similarity rejection threshold paired with a strict command allow-list to block out-of-scope or ambiguous voice triggers.',
     ],
     metrics: [
       { label: 'Test Accuracy', value: '96.23%' },
@@ -330,46 +319,46 @@ export const projects: Project[] = [
       { label: 'Intents', value: '15' },
     ],
     architecture: [
-      { stage: '01 Speech-to-Text', tech: 'SraVaani-1.0 (CUDA)', detail: 'Multilingual audio transcription via Gradio GPU space' },
-      { stage: '02 Dense Embeddings', tech: 'MiniLM-L12-v2 (CPU)', detail: 'Semantic cosine matching against train-only prototypes' },
-      { stage: '03 Safety Threshold', tech: 'Cosine Gate (< 0.47)', detail: 'Ambiguous or OOD utterances rejected as UNKNOWN' },
-      { stage: '04 Action Registry', tech: 'FastAPI Allow-List', detail: 'Deterministic mapping to 14 safe UI actions' },
+      { stage: '01 Speech ASR', tech: 'SraVaani-1.0 (CUDA)', detail: 'Multilingual audio transcription via Gradio GPU service' },
+      { stage: '02 Intent Vector', tech: 'MiniLM-L12-v2 (CPU)', detail: 'Cosine similarity against train-only semantic prototypes' },
+      { stage: '03 Rejection Gate', tech: 'Threshold < 0.47', detail: 'Ambiguous or OOD utterances rejected safely as UNKNOWN' },
+      { stage: '04 Allow-List API', tech: 'FastAPI Registry', detail: 'Executes only 14 explicitly allow-listed safe actions' },
     ],
-    tags: ['SraVaani ASR', 'Sentence Transformers', 'FastAPI', 'Gradio', 'Cosine Guardrails', 'NLP'],
+    tags: ['SraVaani ASR', 'Sentence Transformers', 'FastAPI', 'Cosine Guardrails', 'NLP'],
     githubHref: 'https://github.com/Soumya9679/voice-assistant',
     visualType: 'voice',
     endpoint: 'POST /voice/process',
   },
   {
     id: 'rag-chatbot',
-    title: 'RAG Chatbot — Local Enterprise Assistant',
-    subtitle: 'Privacy-First FAISS Vector Search + Local Qwen2.5 LLM',
+    title: 'RAG Chatbot — Local Enterprise AI Assistant',
+    subtitle: 'Privacy-First FAISS Retrieval + Local Ollama Qwen2.5 Inference',
     category: 'RAG & GenAI',
-    tier: 'flagship',
+    tier: 'cv-core',
     year: '2026',
-    context: 'Privacy-First Enterprise AI Workspace',
+    context: 'Privacy-First Generative AI & Backend',
     summary:
-      'Locally-hosted Retrieval-Augmented Generation workspace pairing FAISS semantic indexing with Ollama (Qwen2.5) inference behind a streaming FastAPI + React 19 UI.',
+      'Privacy-first RAG pipeline combining document chunking, dense FAISS vector indexing, and local Qwen2.5 LLM inference served over streaming FastAPI endpoints.',
     problem:
-      'Enterprise teams need semantic Q&A over internal documents without leaking sensitive corpora to third-party cloud LLM APIs.',
+      'Enterprise document Q&A workflows require accurate multi-document retrieval without sending proprietary corpora to external cloud LLM APIs.',
     highlights: [
-      'Built an end-to-end private RAG pipeline combining recursive document chunking, dense vector embeddings, and zero-external-egress local inference.',
-      'Implemented sub-second semantic retrieval across multi-document corpora using Hugging Face Sentence Transformers (all-MiniLM-L6-v2) and FAISS.',
-      'Orchestrated local Qwen2.5 (1.5B) via Ollama and LangChain, serving streaming responses to a glassmorphic React 19 + Vite workspace.',
+      'Built a zero-egress RAG pipeline combining recursive document chunking, dense vector indexing, and fully local LLM execution.',
+      'Implemented semantic search using Hugging Face Sentence Transformers (all-MiniLM-L6-v2) and FAISS for fast context retrieval across multi-document corpora.',
+      'Orchestrated local Qwen2.5 (1.5B) inference via Ollama and LangChain, serving streaming responses through RESTful FastAPI endpoints.',
     ],
     metrics: [
       { label: 'Local LLM', value: 'Qwen2.5' },
-      { label: 'Vector Store', value: 'FAISS' },
+      { label: 'Vector Index', value: 'FAISS' },
       { label: 'Embeddings', value: 'MiniLM-L6' },
-      { label: 'Data Egress', value: '0%' },
+      { label: 'Cloud Egress', value: '0%' },
     ],
     architecture: [
-      { stage: '01 Ingestion', tech: 'Document Chunker', detail: 'Multi-document splitting & metadata normalization' },
-      { stage: '02 Vector Index', tech: 'FAISS + MiniLM-L6-v2', detail: 'Local dense vector store persisted on disk' },
-      { stage: '03 Orchestration', tech: 'LangChain + Ollama', detail: 'Local Qwen2.5 inference with retrieved context' },
-      { stage: '04 Client UI', tech: 'FastAPI + React 19', detail: 'Streaming workspace with model parameter controls' },
+      { stage: '01 Chunking', tech: 'Document Splitter', detail: 'Multi-document normalization and overlapping chunks' },
+      { stage: '02 Dense Index', tech: 'FAISS + MiniLM-L6', detail: 'Local semantic vector store persisted on disk' },
+      { stage: '03 Generation', tech: 'LangChain + Ollama', detail: 'Local Qwen2.5 inference grounded on retrieved context' },
+      { stage: '04 Streaming API', tech: 'FastAPI + React', detail: 'RESTful streaming endpoints paired with chat workspace' },
     ],
-    tags: ['LangChain', 'FAISS', 'Ollama', 'Qwen2.5', 'FastAPI', 'React 19'],
+    tags: ['LangChain', 'FAISS', 'Ollama', 'Qwen2.5', 'Sentence Transformers', 'FastAPI'],
     githubHref: 'https://github.com/Soumya9679/RAG-chatbot',
     liveHref: 'https://rag-chatbot-ivory-six.vercel.app',
     image: '/images/rag-chatbot.png',
@@ -378,237 +367,106 @@ export const projects: Project[] = [
   },
   {
     id: 'text-summarizer',
-    title: 'Text Summarizer — NLP & Semantic Eval',
-    subtitle: 'Extractive Pipeline + Multi-Metric Evaluation Harness',
+    title: 'Text Summarizer — NLP & Semantic Evaluation',
+    subtitle: 'Extractive Summarization Benchmarked with ROUGE, BERTScore & BLEURT',
     category: 'NLP & Speech AI',
-    tier: 'flagship',
+    tier: 'cv-core',
     year: '2026',
-    context: 'NLP Research & Evaluation Benchmark',
+    context: 'Natural Language Processing & Evaluation',
     summary:
-      'Custom extractive text summarization pipeline benchmarked on 1,000 CNN/DailyMail articles and evaluated across lexical and neural semantic fidelity metrics.',
+      'Extractive text summarization pipeline benchmarked on 1,000 CNN/DailyMail articles with custom tokenization and joint lexical + neural fidelity evaluation.',
     problem:
-      'Lexical n-gram overlap metrics like ROUGE miss paraphrased factual fidelity; evaluating summary quality requires combining lexical and learned neural judges.',
+      'Lexical metrics alone fail to capture paraphrased meaning; trustworthy summarization requires pairing n-gram overlap with contextual neural evaluation.',
     highlights: [
-      'Built custom sentence tokenization, abbreviation handling, irregular-verb/pronoun lemmatization, and Jaccard similarity scoring from scratch in Python.',
-      'Benchmarked the extractive pipeline across 1,000 CNN/DailyMail news articles in a reproducible Google Colab evaluation harness.',
-      'Measured summary fidelity and semantic coherence jointly using ROUGE, DistilBERT-backed BERTScore, and Google Research BLEURT-base-128.',
+      'Built custom sentence tokenization, abbreviation handling, pronoun/irregular-verb lemmatization, and Jaccard similarity sentence ranking in Python.',
+      'Benchmarked the extractive pipeline across 1,000 CNN/DailyMail documents in a reproducible Google Colab evaluation harness.',
+      'Evaluated summary fidelity and semantic coherence using lexical and neural metrics: ROUGE, DistilBERT BERTScore, and Google Research BLEURT-base-128.',
     ],
     metrics: [
-      { label: 'Corpus', value: '1,000 Docs' },
+      { label: 'Benchmark', value: '1,000 Docs' },
       { label: 'Dataset', value: 'CNN/DM' },
       { label: 'Lexical', value: 'ROUGE' },
       { label: 'Neural', value: 'BERT + BLEURT' },
     ],
     architecture: [
-      { stage: '01 Tokenizer', tech: 'Custom NLP Parser', detail: 'Abbreviation-aware sentence split & lemmatization' },
-      { stage: '02 Scorer', tech: 'Word Freq + Jaccard', detail: 'Graph/overlap sentence salience ranking' },
-      { stage: '03 Lexical Eval', tech: 'ROUGE Scorer', detail: 'N-gram recall and overlap benchmarking' },
-      { stage: '04 Neural Eval', tech: 'BERTScore + BLEURT', detail: 'Contextual semantic fidelity across 1,000 samples' },
+      { stage: '01 Preprocessing', tech: 'Custom NLP Parser', detail: 'Abbreviation-safe sentence split & lemmatization' },
+      { stage: '02 Extraction', tech: 'Freq + Jaccard', detail: 'Salience scoring & cosine consistency checks' },
+      { stage: '03 Lexical Eval', tech: 'ROUGE Scorer', detail: 'Surface n-gram precision/recall benchmarking' },
+      { stage: '04 Neural Eval', tech: 'BERTScore + BLEURT', detail: 'Semantic fidelity evaluation across 1,000 samples' },
     ],
-    tags: ['Python', 'NLP', 'ROUGE', 'BERTScore', 'BLEURT', 'Transformers'],
+    tags: ['Python', 'NLP', 'ROUGE', 'BERTScore', 'BLEURT', 'CNN/DailyMail'],
     githubHref: 'https://github.com/Soumya9679/text_summarizer',
     visualType: 'summarizer',
   },
   {
     id: 'cortex-finance',
-    title: 'Cortex Finance AI',
-    subtitle: 'Bank Statement Intelligence, Anomaly Detection & RAG Advisor',
+    title: 'Cortex Finance AI — Anomaly Detection & Financial RAG',
+    subtitle: 'Isolation Forest Outlier Detection + FAISS Financial Q&A',
     category: 'RAG & GenAI',
-    tier: 'product',
+    tier: 'applied-ml',
     year: '2026',
     context: 'SREY 2k26 CodeFlow 36h Hackathon Finalist • Team Coffee & Code',
     summary:
-      'AI-powered Indian bank statement analyzer extracting semi-structured PDF/CSV transactions, detecting anomalies via Isolation Forest, and answering spending queries via RAG.',
+      'AI bank statement analyzer extracting semi-structured Indian PDF/CSV transactions, detecting spending anomalies via Isolation Forest, and serving RAG financial Q&A.',
     problem:
-      'Raw bank statements lack structured categorization, making recurring EMI/subscription leaks and unusual transaction spikes hard to spot quickly.',
+      'Unstructured bank statements obscure recurring payment leaks and anomalous transaction spikes that require automated statistical detection and semantic search.',
     highlights: [
-      'Parsed semi-structured Indian bank statements (PDF/CSV) using pdfplumber into categorized SQLite ledgers with automated Financial Health Scoring.',
-      'Detected unusual spending spikes and recurring UPI/SIP obligations using Scikit-Learn Isolation Forest anomaly models.',
-      'Paired Recharts visual analytics with a FAISS + Gemini RAG financial assistant behind a FastAPI backend.',
+      'Extracted and categorized semi-structured Indian bank statements (PDF/CSV) using pdfplumber and SQLite into automated financial health metrics.',
+      'Implemented Scikit-Learn Isolation Forest anomaly detection to flag unusual spending spikes and recurring UPI/EMI/SIP commitments.',
+      'Connected FAISS vector retrieval, LangChain, and Gemini API behind a FastAPI backend for natural-language ledger queries.',
     ],
     metrics: [
-      { label: 'Built In', value: '36 Hours' },
-      { label: 'Anomaly', value: 'Isolation Forest' },
-      { label: 'RAG Store', value: 'FAISS + Gemini' },
-      { label: 'Result', value: 'Finalist' },
+      { label: 'Anomaly Model', value: 'IsoForest' },
+      { label: 'Vector Store', value: 'FAISS' },
+      { label: 'Backend', value: 'FastAPI' },
+      { label: 'Hackathon', value: 'Finalist' },
     ],
     architecture: [
-      { stage: '01 PDF/CSV Parse', tech: 'pdfplumber + SQLite', detail: 'Extracts & normalizes Indian bank statement ledgers' },
-      { stage: '02 Anomaly Engine', tech: 'Isolation Forest', detail: 'Flags unusual spikes & recurring EMI/UPI patterns' },
-      { stage: '03 RAG Index', tech: 'FAISS + LangChain', detail: 'Semantic retrieval over personal transaction chunks' },
-      { stage: '04 Analytics UI', tech: 'React + Recharts', detail: 'Health score cards & natural-language Q&A' },
+      { stage: '01 Ingestion', tech: 'pdfplumber + SQLite', detail: 'Extracts & normalizes Indian PDF/CSV transactions' },
+      { stage: '02 ML Detection', tech: 'Isolation Forest', detail: 'Detects spending outliers & recurring commitments' },
+      { stage: '03 RAG Index', tech: 'FAISS + LangChain', detail: 'Semantic retrieval over categorized ledger records' },
+      { stage: '04 API & Viz', tech: 'FastAPI + Recharts', detail: 'Financial health scoring & conversational Q&A' },
     ],
-    tags: ['FastAPI', 'Isolation Forest', 'FAISS', 'LangChain', 'Gemini API', 'React'],
+    tags: ['scikit-learn', 'Isolation Forest', 'FAISS', 'LangChain', 'FastAPI', 'pdfplumber'],
     githubHref: 'https://github.com/Soumya9679/CODEFLOW2026-Neural-Nexus-Cortex-Finance',
     liveHref: 'https://codeflow-2026-neural-nexus-cortex-f.vercel.app',
     visualType: 'finance',
   },
   {
-    id: 'growth-os',
-    title: 'GrowthOS — AI Productivity & RAG Coach',
-    subtitle: 'Serverless Pinecone RAG Coach + SM-2 Retention + DSA Sync',
-    category: 'Full-Stack AI',
-    tier: 'product',
-    year: '2026',
-    context: 'Full-Stack AI Productivity System',
-    summary:
-      'Personal operating system combining a serverless LangChain + Pinecone RAG coach, SuperMemo-2 spaced repetition, and live LeetCode/Codeforces/GFG progress sync.',
-    problem:
-      'Developers juggle fragmented note apps, coding trackers, and planners without contextual AI feedback grounded in their own study logs.',
-    highlights: [
-      'Engineered an AI Growth Coach using LangChain LCEL, Pinecone managed inference (llama-text-embed-v2, 384-dim), and Gemini 2.5 Flash via OpenRouter.',
-      'Synced Next.js Server Actions to background Python indexing endpoints (/api/index, /api/delete) for real-time vector updates on journal edits.',
-      'Integrated live competitive programming trackers (LeetCode, Codeforces, GeeksforGeeks) awarding dynamic +25 XP per solved problem.',
-    ],
-    metrics: [
-      { label: 'Embeddings', value: '384-dim' },
-      { label: 'Vector DB', value: 'Pinecone' },
-      { label: 'Retention', value: 'SM-2 Algo' },
-      { label: 'Sync', value: 'LC / CF / GFG' },
-    ],
-    architecture: [
-      { stage: '01 Server Actions', tech: 'Next.js App Router', detail: 'Triggers background /api/index & /api/delete sync' },
-      { stage: '02 Vector Store', tech: 'Pinecone (384-dim)', detail: 'Multi-tenant userId-filtered llama-text-embed-v2' },
-      { stage: '03 RAG Coach', tech: 'LangChain LCEL', detail: 'Gemini 2.5 Flash coaching over personal logs' },
-      { stage: '04 Gamification', tech: 'SM-2 + CP Sync', detail: 'Spaced repetition & +25 XP per solved problem' },
-    ],
-    tags: ['Next.js', 'LangChain LCEL', 'Pinecone', 'Gemini 2.5', 'SM-2', 'TypeScript'],
-    githubHref: 'https://github.com/Soumya9679/GrowthOS',
-    liveHref: 'https://growth-os-livid.vercel.app',
-    image: '/images/growth-os.png',
-    visualType: 'screenshot',
-  },
-  {
-    id: 'pulsepy',
-    title: 'PulsePy — Interactive Python Platform',
-    subtitle: 'In-Browser Pyodide Runtime + Monaco IDE + Gemini Mentor',
-    category: 'Full-Stack AI',
-    tier: 'product',
-    year: '2026',
-    context: 'Production EdTech Platform (pulsepy.tech)',
-    summary:
-      'Full-stack Python learning platform with an in-browser Pyodide execution engine, Monaco IDE, Gemini AI mentor hints, real-time coding duels, and 15-level XP progression.',
-    problem:
-      'Running untrusted student Python code on backend servers creates security and latency bottlenecks during interactive practice.',
-    highlights: [
-      'Executed Python challenges client-side via WebAssembly Pyodide inside a mobile-responsive Monaco Editor with zero server-side code execution risk.',
-      'Built 20 graded challenges, real-time coding duels, a 15-level progression system, and 30 achievements backed by Firebase Admin & Upstash Redis rate limiting.',
-      'Integrated Zod-validated API routes, OAuth 2.0 (Google/GitHub), JWT httpOnly cookies, and Sentry observability across client, server, and edge.',
-    ],
-    metrics: [
-      { label: 'Runtime', value: 'Pyodide WASM' },
-      { label: 'AI Mentor', value: 'Gemini API' },
-      { label: 'Rate Limit', value: 'Upstash Redis' },
-      { label: 'Observability', value: 'Sentry' },
-    ],
-    architecture: [
-      { stage: '01 Client IDE', tech: 'Monaco + Pyodide', detail: 'Zero-latency in-browser Python test execution' },
-      { stage: '02 AI Hints', tech: 'Google Gemini API', detail: 'Context-aware mentoring without spoiling solutions' },
-      { stage: '03 Auth & Guard', tech: 'OAuth + Zod + Redis', detail: 'Strict schema validation & distributed rate limiting' },
-      { stage: '04 Persistence', tech: 'Firestore + Zustand', detail: 'Real-time duels, leaderboards & GitHub-style heatmap' },
-    ],
-    tags: ['Next.js 15', 'TypeScript', 'Pyodide', 'Monaco', 'Gemini API', 'Upstash Redis'],
-    githubHref: 'https://github.com/Soumya9679/coding_learning_platform',
-    liveHref: 'https://pulsepy.tech',
-    image: '/images/pulsepy.png',
-    visualType: 'screenshot',
-  },
-  {
     id: 'placement-predictor',
-    title: 'Placement Predictor ML Service',
-    subtitle: 'Scikit-Learn Pipeline + Pydantic Validation + Render Deploy',
-    category: 'ML & FastAPI',
-    tier: 'product',
+    title: 'Placement Predictor — Scikit-Learn ML Service',
+    subtitle: 'StandardScaler + LogisticRegression Pipeline on FastAPI',
+    category: 'Machine Learning',
+    tier: 'applied-ml',
     year: '2026',
-    context: 'End-to-End Deployed ML Web App',
+    context: 'End-to-End Deployed ML Inference API',
     summary:
-      'Production-ready Scikit-Learn classification service (StandardScaler + LogisticRegression) behind a Pydantic-validated FastAPI backend and monochrome dashboard.',
+      'Full-stack Machine Learning prediction service wrapping a serialized Scikit-Learn pipeline (StandardScaler + LogisticRegression) with Pydantic validation and FastAPI.',
     problem:
-      'Demonstrates clean separation of model training serialization, strict request validation, and static frontend serving in a single deployable container.',
+      'Demonstrates clean production separation between model training artifacts, strict input schema validation, and live cloud inference serving.',
     highlights: [
-      'Trained and serialized a reproducible Scikit-Learn pipeline combining StandardScaler preprocessing and LogisticRegression.',
-      'Enforced input bounds and schema guarantees with Pydantic data validators and exposed real-time inference over FastAPI.',
-      'Deployed live on Render with assessment session logging and CORS-ready REST endpoints.',
+      'Trained and serialized a reproducible Scikit-Learn pipeline combining StandardScaler feature normalization and LogisticRegression classification.',
+      'Validated inference payloads with Pydantic schemas and served real-time predictions with session assessment logging via FastAPI.',
+      'Containerized and deployed live to Render with auto-configured ports and CORS support.',
     ],
     metrics: [
       { label: 'Pipeline', value: 'Scaler + LR' },
       { label: 'Validation', value: 'Pydantic' },
-      { label: 'API', value: 'FastAPI' },
+      { label: 'Serving', value: 'FastAPI' },
       { label: 'Hosting', value: 'Render' },
     ],
     architecture: [
-      { stage: '01 Training', tech: 'scikit-learn Pipeline', detail: 'StandardScaler + LogisticRegression serialized to .pkl' },
-      { stage: '02 Validation', tech: 'Pydantic Model', detail: 'Strict CGPA & IQ schema enforcement' },
-      { stage: '03 Serving', tech: 'FastAPI + Procfile', detail: 'REST inference + static dashboard delivery' },
+      { stage: '01 Training', tech: 'scikit-learn', detail: 'StandardScaler + LogisticRegression serialized to .pkl' },
+      { stage: '02 Validation', tech: 'Pydantic Schema', detail: 'Strict CGPA & IQ bounds checking' },
+      { stage: '03 Cloud API', tech: 'FastAPI + Render', detail: 'REST inference endpoint & assessment log UI' },
     ],
-    tags: ['FastAPI', 'scikit-learn', 'Pydantic', 'Python', 'Render'],
+    tags: ['Python', 'scikit-learn', 'FastAPI', 'Pydantic', 'Render'],
     githubHref: 'https://github.com/Soumya9679/placement-predictor',
     liveHref: 'https://placement-predictor-77tq.onrender.com',
     visualType: 'placement',
     endpoint: 'POST /predict',
   },
-  {
-    id: 'eco-learn',
-    title: 'EcoLearn — Sustainability Platform',
-    subtitle: 'Gamified Environmental Learning & Impact Analytics',
-    category: 'Full-Stack AI',
-    tier: 'product',
-    year: '2026',
-    context: 'Gamified EdTech & Community Platform',
-    summary:
-      'Next.js 16 & Firebase sustainability education platform featuring interactive modules, proof-based eco challenges, community media posts, and tiered leaderboards.',
-    problem:
-      'Sustainability education often lacks measurable behavioral feedback loops to keep students engaged over time.',
-    highlights: [
-      'Built multi-tier leaderboards (school, state, country, global) and automated achievement badge unlocks on Cloud Firestore.',
-      'Integrated Cloudinary media pipelines for real-world sustainability challenge proof submissions and community feeds.',
-      'Shipped a role-gated Admin Dashboard for managing modules, quizzes, and platform engagement metrics.',
-    ],
-    metrics: [
-      { label: 'Framework', value: 'Next.js 16' },
-      { label: 'Database', value: 'Firestore' },
-      { label: 'Media', value: 'Cloudinary' },
-      { label: 'UI', value: 'React 19' },
-    ],
-    architecture: [
-      { stage: '01 Frontend', tech: 'Next.js 16 + Motion', detail: 'Interactive modules, quizzes & search' },
-      { stage: '02 Identity', tech: 'Firebase Auth', detail: 'Role-based user & admin governance' },
-      { stage: '03 Data & Media', tech: 'Firestore + Cloudinary', detail: 'Proof uploads, badges & multi-tier leaderboards' },
-    ],
-    tags: ['Next.js 16', 'React 19', 'Firebase', 'Cloudinary', 'Framer Motion'],
-    githubHref: 'https://github.com/Soumya9679/eco-learn',
-    liveHref: 'https://eco-learn-lac.vercel.app',
-    image: '/images/Ecolearn.png',
-    visualType: 'screenshot',
-  },
 ];
-
-export const engineeringArchive = [
-  {
-    name: 'FlowForge',
-    description: 'FastAPI workflow automation engine with Pydantic schemas for trigger-based workflow creation and state management.',
-    stack: ['Python', 'FastAPI', 'Pydantic'],
-    href: 'https://github.com/Soumya9679/FlowForge',
-  },
-  {
-    name: 'lan-video-server',
-    description: 'Local network media streaming server paired with a React 19 + Vite + Tailwind v4 TypeScript frontend.',
-    stack: ['TypeScript', 'React 19', 'Vite'],
-    href: 'https://github.com/Soumya9679/lan-video-server',
-  },
-  {
-    name: 'fast_api_project',
-    description: 'Modular FastAPI backend service featuring structured data loaders, helper layers, and REST API endpoints.',
-    stack: ['Python', 'FastAPI', 'REST'],
-    href: 'https://github.com/Soumya9679/fast_api_project',
-  },
-  {
-    name: 'neetcode-submissions',
-    description: 'Algorithmic problem-solving archive in Python covering trees, graphs, dynamic programming, and sliding windows.',
-    stack: ['Python', 'DSA', 'Algorithms'],
-    href: 'https://github.com/Soumya9679/neetcode-submissions',
-  },
-] as const;
 
 export const leadershipItems = [
   {
@@ -616,24 +474,24 @@ export const leadershipItems = [
     title: 'Smart India Hackathon — Team Lead (HexaCore)',
     period: '2025 – 2026',
     description:
-      'Led Team HexaCore across SIH 2025 & 2026, architecting and delivering AI-powered cognitive gaming (Random Forest Adaptive Difficulty microservice) and multilingual speech-to-action modules (SraVaani ASR + MiniLM Intent Router).',
+      'Led Team HexaCore for Smart India Hackathon (SIH) 2026 & 2025, architecting and delivering AI-powered cognitive gaming (Adaptive Difficulty Random Forest microservice) and multilingual voice modules (SraVaani ASR + MiniLM intent router).',
     tags: ['Team Leadership', 'Adaptive ML', 'Speech AI', 'FastAPI'],
   },
   {
-    badge: 'SREY 2k26 Finalist',
-    title: 'CodeFlow 36h Hackathon — Team Lead (Coffee & Code)',
-    period: '2026',
-    description:
-      'Led Team Coffee & Code to the final of the 36-hour live CodeFlow hackathon during SREY 2k26, shipping Cortex Finance AI with PDF/CSV bank statement extraction, Isolation Forest anomaly detection, and FAISS + Gemini RAG.',
-    tags: ['36h Sprint', 'Cortex Finance AI', 'Isolation Forest', 'FAISS RAG'],
-  },
-  {
     badge: 'GDGoC Finalist',
-    title: 'GDGoC TechSprint 2025 at STCET — Team Lead (Coffee & Code)',
+    title: 'GDG on Campus TechSprint 2025 — Team Lead (Coffee & Code)',
     period: '2025',
     description:
-      'Led Team Coffee & Code to the finals at Google Developer Group on Campus TechSprint 2025 at STCET, earning official certification for rapid AI and full-stack web prototyping.',
-    tags: ['GDG on Campus', 'Rapid Prototyping', 'Full-Stack AI'],
+      'Led Team Coffee & Code to the final during GDGoC TechSprint 2025 at STCET and earned official certification for rapid AI and web prototyping.',
+    tags: ['GDGoC STCET', 'Rapid AI Prototyping', 'Team Lead'],
+  },
+  {
+    badge: 'SREY 2k26 Finalist',
+    title: 'CodeFlow 36h Live Hackathon — Team Lead (Coffee & Code)',
+    period: '2026',
+    description:
+      'Led Team Coffee & Code to the final of the 36-hour CodeFlow live hackathon during the SREY 2k26 tech fest, delivering Cortex Finance AI (Isolation Forest anomaly detection + FAISS RAG).',
+    tags: ['36h Hackathon', 'Isolation Forest', 'FAISS RAG'],
   },
 ] as const;
 
@@ -644,8 +502,8 @@ export const educationItems = [
     period: '2024 – 2028',
     score: 'CGPA: 8.79 / 10.0',
     highlights: [
-      'Focus on Data Science, Machine Learning, NLP, and Full-Stack AI Systems',
-      'Led multiple national and campus hackathon teams (SIH, GDGoC, SREY)',
+      'Specializing in Data Science, Machine Learning, NLP, and AI Engineering',
+      'Led engineering teams across Smart India Hackathon, GDGoC TechSprint, and SREY 2k26',
     ],
   },
   {
@@ -653,14 +511,14 @@ export const educationItems = [
     institution: 'Kalagechia Jagadish Vidyapith, West Bengal',
     period: '2023',
     score: 'Aggregate: 80%',
-    highlights: ['Science & Mathematics foundation'],
+    highlights: ['Mathematics, Computer/Science fundamentals'],
   },
 ] as const;
 
 export const sandboxPresets = {
   difficulty: {
     endpoint: 'POST /predict',
-    model: 'sih26003_adaptive_difficulty_v2.pkl (Random Forest)',
+    model: 'sih26003_adaptive_difficulty_v2.pkl',
     scenarios: [
       {
         id: 'flow',
@@ -674,7 +532,7 @@ export const sandboxPresets = {
           accuracy_trend: 0.14,
           consecutive_successes: 5,
         },
-        output: { next_difficulty: 4, confidence: 0.86, decision: 'INCREASE (≥ 0.632 band)' },
+        output: { next_difficulty: 4, confidence: 0.86, decision: 'INCREASE (≥ 0.632 threshold)' },
       },
       {
         id: 'steady',
@@ -702,18 +560,18 @@ export const sandboxPresets = {
           accuracy_trend: -0.19,
           consecutive_successes: 0,
         },
-        output: { next_difficulty: 3, confidence: 0.91, decision: 'DECREASE (< 0.549 band)' },
+        output: { next_difficulty: 3, confidence: 0.91, decision: 'DECREASE (< 0.549 threshold)' },
       },
     ],
   },
   voice: {
     endpoint: 'POST /voice/process',
-    model: 'SraVaani-1.0 ASR + MiniLM-L12-v2 (0.47 Threshold)',
+    model: 'SraVaani-1.0 + MiniLM-L12-v2',
     samples: [
       {
         id: 'memory',
         utterance: '"start the memory game"',
-        language: 'EN',
+        language: 'English',
         intent: 'START_MEMORY_GAME',
         similarity: 0.9377,
         action: 'start_memory_game',
@@ -722,7 +580,7 @@ export const sandboxPresets = {
       {
         id: 'score',
         utterance: '"मेरा स्कोर दिखाओ" (Show my score)',
-        language: 'HI / Multilingual',
+        language: 'Hindi / Multilingual',
         intent: 'SHOW_SCORE',
         similarity: 0.8412,
         action: 'show_score',
@@ -730,8 +588,8 @@ export const sandboxPresets = {
       },
       {
         id: 'ood',
-        utterance: '"transfer money to unknown account"',
-        language: 'OOD Guardrail Test',
+        utterance: '"transfer money to external account"',
+        language: 'Out-of-Scope Test',
         intent: 'UNKNOWN',
         similarity: 0.214,
         action: null,
@@ -741,7 +599,7 @@ export const sandboxPresets = {
   },
   rag: {
     endpoint: 'POST /chat',
-    model: 'all-MiniLM-L6-v2 + FAISS + Ollama (qwen2.5:1.5b)',
+    model: 'all-MiniLM-L6-v2 + FAISS + Qwen2.5',
     queries: [
       {
         id: 'policy',
@@ -750,16 +608,16 @@ export const sandboxPresets = {
         topScore: 0.892,
         latencyMs: 340,
         response:
-          'Retrieved 4 chunks via FAISS (0% external egress). Policy §4.2 mandates 90-day local vector retention and on-prem Qwen2.5 inference.',
+          'Retrieved 4 FAISS chunks (0% external egress). Policy §4.2 mandates 90-day local vector retention and on-prem Qwen2.5 inference.',
       },
       {
         id: 'finance',
-        query: 'Flag recurring subscriptions and anomalies in March ledger.',
+        query: 'Flag recurring mandates and anomalies in March bank CSV.',
         retrievedChunks: 5,
         topScore: 0.864,
         latencyMs: 290,
         response:
-          'Isolation Forest flagged 2 outlier UPI transfers (>3.2σ) and grouped 4 recurring monthly mandates across indexed PDF statements.',
+          'Isolation Forest flagged 2 outlier UPI transfers (>3.2σ) and grouped 4 recurring monthly mandates across indexed statements.',
       },
     ],
   },

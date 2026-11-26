@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
+import { Inter, JetBrains_Mono, Newsreader } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -13,9 +13,10 @@ const inter = Inter({
   display: 'swap',
 });
 
-const spaceGrotesk = Space_Grotesk({
+const newsreader = Newsreader({
   subsets: ['latin'],
-  variable: '--font-space',
+  style: ['normal', 'italic'],
+  variable: '--font-newsreader',
   display: 'swap',
 });
 
@@ -26,29 +27,27 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const viewport: Viewport = {
-  themeColor: '#05070b',
+  themeColor: '#f8f7f4',
   width: 'device-width',
   initialScale: 1,
 };
 
 export const metadata: Metadata = {
   title: {
-    default: 'Soumyadip Maity — AI/ML Engineer & Data Scientist',
+    default: 'Soumyadip Maity — Data Science, ML & AI Engineering',
     template: '%s | Soumyadip Maity',
   },
   description:
-    'Portfolio of Soumyadip Maity — B.Tech IT undergraduate (8.79 CGPA) engineering production ML microservices, multilingual speech-to-intent pipelines, privacy-first RAG systems, and full-stack AI applications.',
+    'Portfolio of Soumyadip Maity — B.Tech IT undergraduate (8.79 CGPA) specializing in Data Science, Machine Learning, NLP, FAISS/RAG pipelines, model evaluation, and FastAPI deployment.',
   keywords: [
     'Soumyadip Maity',
-    'AI Engineer',
-    'Machine Learning Engineer',
-    'Data Scientist',
-    'FastAPI',
-    'RAG',
-    'LangChain',
-    'FAISS',
+    'Data Science',
+    'Machine Learning',
+    'AI Engineering',
     'NLP',
-    'Speech AI',
+    'RAG',
+    'FAISS',
+    'FastAPI',
     'Python',
     'Portfolio',
   ],
@@ -57,27 +56,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    title: 'Soumyadip Maity — AI/ML Engineer & Data Scientist',
+    title: 'Soumyadip Maity — Data Science, ML & AI Engineering',
     description:
-      'Production ML pipelines, multilingual Speech AI, local RAG systems, and hackathon-winning full-stack engineering.',
+      'Python ML pipelines, multilingual Speech AI, local FAISS/RAG systems, and rigorous NLP model evaluation.',
     siteName: 'Soumyadip Maity Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Soumyadip Maity — AI/ML Engineer & Data Scientist',
+    title: 'Soumyadip Maity — Data Science, ML & AI Engineering',
     description:
-      'Production ML pipelines, multilingual Speech AI, local RAG systems, and hackathon-winning full-stack engineering.',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
+      'Python ML pipelines, multilingual Speech AI, local FAISS/RAG systems, and rigorous NLP model evaluation.',
   },
 };
 
@@ -89,7 +77,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <body className="overflow-x-hidden font-sans">
