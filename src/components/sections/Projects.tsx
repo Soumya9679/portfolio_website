@@ -116,8 +116,8 @@ export default function Projects() {
                 key={project.id}
                 initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.45, delay: Math.min(index * 0.05, 0.25) }}
+                viewport={{ once: true, amount: 0.05 }}
+                transition={{ duration: 0.3, delay: Math.min(index * 0.04, 0.16) }}
                 className={cn(
                   'glass-card group flex flex-col justify-between overflow-hidden',
                   isLead && 'lg:col-span-2 lg:grid lg:grid-cols-12'

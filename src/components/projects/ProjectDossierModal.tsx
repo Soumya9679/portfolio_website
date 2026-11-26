@@ -28,7 +28,12 @@ export default function ProjectDossierModal({ project, onClose }: ProjectDossier
   return (
     <AnimatePresence>
       {project && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="dossier-title"
+          className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-6"
+        >
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -57,7 +62,7 @@ export default function ProjectDossierModal({ project, onClose }: ProjectDossier
               <span className="font-mono text-xs text-slate-400">{project.context}</span>
             </div>
 
-            <h3 className="mt-3 font-display text-2xl font-bold text-white sm:text-3xl">
+            <h3 id="dossier-title" className="mt-3 font-display text-2xl font-bold text-white sm:text-3xl">
               {project.title}
             </h3>
             <p className="mt-1 text-sm text-emerald-300">{project.subtitle}</p>

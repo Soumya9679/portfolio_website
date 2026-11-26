@@ -91,8 +91,8 @@ export default function Contact() {
           <motion.div
             initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.45 }}
+            viewport={{ once: true, amount: 0.05 }}
+            transition={{ duration: 0.3 }}
             className="lg:col-span-5"
           >
             <SectionHeading
@@ -164,8 +164,8 @@ export default function Contact() {
           <motion.div
             initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.45, delay: 0.06 }}
+            viewport={{ once: true, amount: 0.05 }}
+            transition={{ duration: 0.3, delay: 0.04 }}
             className="panel-surface rounded-2xl p-6 sm:p-8 lg:col-span-7"
           >
             <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-emerald-400">

@@ -72,8 +72,8 @@ export default function Skills() {
                 key={cap.title}
                 initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.4, delay: index * 0.06 }}
+                viewport={{ once: true, amount: 0.05 }}
+                transition={{ duration: 0.3, delay: index * 0.04 }}
                 className="glass-card group flex flex-col justify-between p-5"
               >
                 <div>

@@ -198,7 +198,12 @@ export default function CommandPalette() {
   return (
     <AnimatePresence>
       {open && (
-        <div className="fixed inset-0 z-[70] flex items-start justify-center px-4 pt-[12vh]">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Command palette"
+          className="fixed inset-0 z-[80] flex items-start justify-center px-4 pt-[12vh]"
+        >
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

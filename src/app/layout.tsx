@@ -96,7 +96,7 @@ export default function RootLayout({
         <AnimatedBackground />
         <Navbar />
         <CommandPalette />
-        <main className="relative z-10">{children}</main>
+        <main className="relative">{children}</main>
         <Footer />
         <ScrollToTop />
       </body>

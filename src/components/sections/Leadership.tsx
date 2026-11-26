@@ -31,8 +31,8 @@ export default function Leadership() {
                 key={item.title}
                 initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.4, delay: idx * 0.07 }}
+                viewport={{ once: true, amount: 0.05 }}
+                transition={{ duration: 0.3, delay: idx * 0.05 }}
                 className="glass-card p-5 sm:p-6"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
@@ -70,8 +70,8 @@ export default function Leadership() {
                 key={edu.degree}
                 initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.4, delay: idx * 0.08 }}
+                viewport={{ once: true, amount: 0.05 }}
+                transition={{ duration: 0.3, delay: idx * 0.05 }}
                 className="panel-surface rounded-2xl p-5 sm:p-6"
               >
                 <div className="flex items-center justify-between gap-3">

@@ -31,8 +31,8 @@ export default function About() {
           <motion.div
             initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.45 }}
+            viewport={{ once: true, amount: 0.05 }}
+            transition={{ duration: 0.3 }}
             className="panel-surface flex flex-col justify-between rounded-2xl p-6 sm:p-8 lg:col-span-6"
           >
             <div className="space-y-4 text-sm leading-relaxed text-slate-300 sm:text-base">
@@ -110,8 +110,8 @@ export default function About() {
                 key={principle.title}
                 initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.4, delay: idx * 0.06 }}
+                viewport={{ once: true, amount: 0.05 }}
+                transition={{ duration: 0.3, delay: idx * 0.04 }}
                 className="glass-card p-5"
               >
                 <div className="flex items-center justify-between">
